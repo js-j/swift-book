@@ -1,55 +1,60 @@
-# About Swift
+# За Swift
 
-Understand the high-level goals of the language.
+Разберете целите от високо ниво на езика.
 
-Swift is a fantastic way to write software
-for phones, tablets, desktops, servers,
-or anything else that runs code.
-It's a safe and fast programming language
-that combines the best in modern language thinking
-with wisdom from a diverse open source community.
+Swift е фантастичен начин да пишете софтуер
+за телефони, таблети, настолни компютри, сървъри
+или каквото и да е друго нещо, което изпълнява код.
+Това е безопасен и бърз език за програмиране,
+който съчетава най-доброто от съвременната мисъл при
+езиците за програмиране с мъдростта, идваща от една
+разнообразна open source общност.
 
-Swift is friendly to new programmers,
-without sacrificing the power and flexibility
-that experienced programmers need.
-It's an industrial-quality programming language
-that's as expressive and enjoyable as a scripting language.
-The compiler is optimized for performance
-and the language is optimized for development,
-without compromising on either.
+Swift e приятелски настроен към новите програмисти,
+без да жертва мощта и гъвкавостта, от която имат нужда опитните.
+Това е език за програмиране с индустриално качество, който
+е изразителен и доставящ удовлетворение като скриптов език.
+Компилаторът е оптимизиран за бързина, а езикът е оптимизиран
+за процеса на разработката, без да се прави компромис с нито едното от двете.
 
-Swift defines away large classes of common programming errors
-by adopting modern programming patterns:
+Swift държи на разстояние големи класове от често срещани грешки при програмирането,
+като възприема съвременни модели за програмиране:
 
-- Variables are always initialized before use.
-- Array indices are checked for out-of-bounds errors.
-- Integers are checked for overflow.
-- Optionals ensure that `nil` values are handled explicitly.
-- Memory is managed automatically.
-- Error handling allows controlled recovery from unexpected failures.
+- Променливите винаги се инициализират преди използване.
+- Индексите на масивите се проверяват за грешки, свързани с излизане от границите.
+- Целочислените променливи се проверяват за препълване.
+- Типът данни Optional гарантира, че на `nil` стойностите се обръща изрично внимание.
+- Паметта се управлява автоматично.
+- Обработката на грешки позволява контролирано възстановяване от неочаквани сривове.
 
-Swift code is compiled and optimized to get the most out of modern hardware.
-The syntax and standard library have been designed
-based on the guiding principle that
-the obvious way to write your code should also perform the best.
-Its combination of safety and speed make Swift an excellent choice for
-everything from "Hello, world!" to an entire operating system.
+Swift кодът се компилира и оптимизира така, че максимално да се използват
+възможностите на съвременния хардуер.
+Синтаксисът и станднартната библиотека са проектирани
+въз основа на водещия принцип, че очевидният начин, по който бихте написали
+своя код, също така би трябвало да е и най-добре представящият се.
+Комбинацията от сигурност и бързина правят Swift отличен избор за всичко
+от "Здравей, свят!" до цяла операционна система.
 
-Swift combines a modern, lightweight syntax
-that's familiar for developers coming from other popular languages
-with powerful features like type inference and pattern matching,
-allowing complex ideas to be expressed in a clear and concise manner.
-As a result, code is easier to read, write, and maintain.
+Swift съчетава съвременен, олекотен синтаксис, който е познат на разработчиците,
+идващи от други популярни езици с мощни възможности, като разпознаване на типа (type inference) и
+съпоставяне на шаблони (pattern matching), което позволява сложни идеи да бъдат изразявани по ясен
+и стегнат начин.
+В резултат на това кодът по-лесно се чете, пише и поддържа.
 
 Swift continues to evolve with thoughtful new features and powerful capabilities.
 The goals for Swift are ambitious.
 We can’t wait to see what you create with it.
 
-> Beta Software:
+Swift продължава да еволюира с внимателно обмислени нови черти и мощни възможности.
+Целите, поставени за Swift, са амбициозни.
+Нямаме търпение да видим какво Вие създавате с него.
+
+> Бета софтуер:
 >
-> This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.
+> Тази документация съдържа предварителна информация за API интерфейс или технология в процес на разработка. Информацията може да бъде променена и софтуерът, който е имплементиран според тази документация, трябва да бъде тестван с окончателното издание на операционната система.
 >
-> Learn more about using [Apple's beta software](https://developer.apple.com/support/beta-software/).
+> Научете повече за това как да използвате [бета софтуера на Apple](https://developer.apple.com/support/beta-software/).
+
 
 <!--
 This source file is part of the Swift.org open source project
