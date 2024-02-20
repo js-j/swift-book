@@ -41,13 +41,9 @@ Swift съчетава съвременен, олекотен синтаксис
 и стегнат начин.
 В резултат на това кодът по-лесно се чете, пише и поддържа.
 
-Swift continues to evolve with thoughtful new features and powerful capabilities.
-The goals for Swift are ambitious.
-We can’t wait to see what you create with it.
-
 Swift продължава да еволюира с внимателно обмислени нови черти и мощни възможности.
 Целите, поставени за Swift, са амбициозни.
-Нямаме търпение да видим какво Вие създавате с него.
+Нямаме търпение да видим какво Вие ще създадете с него.
 
 > Бета софтуер:
 >
