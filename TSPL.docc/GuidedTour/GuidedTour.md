@@ -2424,11 +2424,12 @@ anyCommonElements([1, 2, 3], [3])
 Writing `<T: Equatable>`
 is the same as writing `<T> ... where T: Equatable`.
 
-> Beta Software:
+
+> Бета софтуер:
 >
-> This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.
+> Тази документация съдържа предварителна информация за API интерфейс или технология в процес на разработка. Информацията може да бъде променена и софтуерът, който е имплементиран според тази документация, трябва да бъде тестван с окончателното издание на операционната система.
 >
-> Learn more about using [Apple's beta software](https://developer.apple.com/support/beta-software/).
+> Научете повече за това как да използвате [бета софтуера на Apple](https://developer.apple.com/support/beta-software/).
 
 <!--
 This source file is part of the Swift.org open source project
