@@ -1,19 +1,20 @@
-# A Swift Tour
+# Обиколка из Swift
 
-Explore the features and syntax of Swift.
+Изследвайте възможностите и синтаксиса на Swift.
 
-Tradition suggests that the first program in a new language
-should print the words “Hello, world!” on the screen.
-In Swift, this can be done in a single line:
+Традицията повелява първата програма в един нов език
+да изведе думите "Здравейте!" (англ. "Hello, world!" - бел. прев.) на екрана.
+В Swift това може да се направи с един-единствен ред:
 
 <!--
-  K&R uses “hello, world”.
-  It seems worth breaking with tradition to use proper casing.
+  K&R използва “здравейте”.
+  Изглежда си струва да се наруши традицията, за да се използва
+  правилно първата главна буква.
 -->
 
 ```swift
-print("Hello, world!")
-// Prints "Hello, world!"
+print("Здравейте!")
+// Извежда "Здравейте!"
 ```
 
 <!--
@@ -25,31 +26,28 @@ print("Hello, world!")
   ```
 -->
 
-This syntax should look familiar if you know another language ---
-in Swift, this line of code is a complete program.
-You don't need to import a separate library for functionality like
-outputting text or handling strings.
-Code written at global scope is used
-as the entry point for the program,
-so you don't need a `main()` function.
-You also don't need to write semicolons
-at the end of every statement.
+Този синтаксис би трябвало да Ви изглежда познат, ако познавате друг език ---
+в Swift този ред код е цяла програма.
+Не е необходимо да се импортира отделна библиотека, ако е необходима функционалност
+като извеждане на текст или обработка на низове.
+Кодът, написан в глобалния обхват, се използва като входна точка за програмата,
+поради което няма нужда от функция `main()`.
+Също така не е необходимо да пишете знака точка и запетая накрая на всяка конструкция.
 
-This tour gives you enough information
-to start writing code in Swift
-by showing you how to accomplish a variety of programming tasks.
-Don’t worry if you don’t understand something ---
-everything introduced in this tour
-is explained in detail in the rest of this book.
+Тази обиколка Ви дава достатъчно информация,
+за да започнете да пишете код на Swift, 
+като Ви показва как да извършите разнообразни задачи от програмирането.
+Не се притеснявайте, ако не разбирате нещо ---
+всичко, което е представено тук, е обяснено подробно в 
+останалата част на книгата.
 
-## Simple Values
+## Прости стойности
 
-Use `let` to make a constant and `var` to make a variable.
-The value of a constant
-doesn't need to be known at compile time,
-but you must assign it a value exactly once.
-This means you can use constants to name a value
-that you determine once but use in many places.
+Използвайте `let`, за да създадете константа, и `var` за променлива.
+Не е задължително стойността на една константа да бъде известна по време на компилирането,
+но трябва да й зададете стойност точно веднъж.
+Това означава, че посредством константите давате име на стойност,
+която определяте веднъж, но използвате на много места.
 
 ```swift
 var myVariable = 42
@@ -67,19 +65,18 @@ let myConstant = 42
   ```
 -->
 
-A constant or variable must have the same type
-as the value you want to assign to it.
-However, you don't always have to write the type explicitly.
-Providing a value when you create a constant or variable
-lets the compiler infer its type.
-In the example above,
-the compiler infers that `myVariable` is an integer
-because its initial value is an integer.
+Една константа или променлива трябва да има същия тип
+като стойността, която искате да й присвоите.
+Но не винаги е необходимо да указвате типа изрично.
+Предоставянето на стойност при създаване на константа или променлива
+позволява на компилатора да разпознае нейния тип.
+В примера по-горе компилаторът разпознава, че `myVariable` е целочислен тип,
+защото началната й стойност е цяло число.
 
-If the initial value doesn't provide enough information
-(or if there isn't an initial value),
-specify the type by writing it after the variable,
-separated by a colon.
+Ако началната стойност не предоставя достатъчно информация
+(или ако няма начална стойност),
+укажете типа, като го напишете след променливата, разделяйки ги
+с двоеточие.
 
 ```swift
 let implicitInteger = 70
@@ -97,15 +94,15 @@ let explicitDouble: Double = 70
   ```
 -->
 
-> Experiment: Create a constant with
-> an explicit type of `Float` and a value of `4`.
+> Експериментирайте: Създайте константа с изричен тип
+> `Float` и стойност `4`.
 
-Values are never implicitly converted to another type.
-If you need to convert a value to a different type,
-explicitly make an instance of the desired type.
+Стойностите никога не се преобразуват неявно към друг тип.
+Ако е необходимо да преобразувате дадена стойност в друг тип,
+явно създайте екземпляр на желания тип.
 
 ```swift
-let label = "The width is "
+let label = "Ширината е "
 let width = 94
 let widthLabel = label + String(width)
 ```
@@ -122,8 +119,8 @@ let widthLabel = label + String(width)
   ```
 -->
 
-> Experiment: Try removing the conversion to `String` from the last line.
-> What error do you get?
+> Експериментирайте: Опитайте да премахнете преобразуването към `String` от последния ред.
+> Каква грешка получавате?
 
 <!--
   TODO: Discuss with Core Writers ---
@@ -131,16 +128,16 @@ let widthLabel = label + String(width)
   helping you learn something?
 -->
 
-There's an even simpler way to include values in strings:
-Write the value in parentheses,
-and write a backslash (`\`) before the parentheses.
-For example:
+Има един още по-прост начин да включвате стойности в низове:
+Напишете стойността в скоби, като поставите обратно наклонена
+черта (`\`) преди скобите.
+Например:
 
 ```swift
 let apples = 3
 let oranges = 5
-let appleSummary = "I have \(apples) apples."
-let fruitSummary = "I have \(apples + oranges) pieces of fruit."
+let appleSummary = "Имам \(apples) ябълки."
+let fruitSummary = "Имам \(apples + oranges) броя плод."
 ```
 
 <!--
@@ -158,24 +155,25 @@ let fruitSummary = "I have \(apples + oranges) pieces of fruit."
   ```
 -->
 
-> Experiment: Use `\()` to
-> include a floating-point calculation in a string
-> and to include someone’s name in a greeting.
+> Експериментирайте: Използвайте `\()`, за да
+> включите изчисление с плаваща запетая в низ
+> и нечие име в поздрав.
 
-Use three double quotation marks (`"""`) for strings
-that take up multiple lines.
-Indentation at the start of each quoted line is removed,
-as long as it matches the indentation of the closing quotation marks.
-For example:
+Използвайте три двойни кавички (`"""`) за низове,
+които заемат повече от един ред.
+Отстъпът в началото на всеки от редовете се премахва,
+стига да съответства на отстъпа на обграждащите кавички.
+Например:
+
 
 ```swift
 let quotation = """
-        Even though there's whitespace to the left,
-        the actual lines aren't indented.
-            Except for this line.
-        Double quotes (") can appear without being escaped.
+        Независимо че отляво има празно пространство,
+        действителните редове нямат отстъп.
+            С изключение на този ред.
+        Знакът за кавички (") може да присъства без да е предхождан от escape-последователност.
 
-        I still have \(apples + oranges) pieces of fruit.
+        Все още имам \(apples + oranges) броя плод.
         """
 ```
 
@@ -195,10 +193,10 @@ let quotation = """
   <rdar://problem/49129068> Swift code formatting damages indentation
 -->
 
-Create arrays and dictionaries using brackets (`[]`),
-and access their elements by writing
-the index or key in brackets.
-A comma is allowed after the last element.
+Създавайте масиви и речници с помощта на скоби (`[]`).
+Осъществявайте достъп до техните елементи, като записвате
+индекса или ключа в скобите.
+Позволено е да има запетая след последния елемент.
 
 <!--
   REFERENCE
@@ -266,7 +264,7 @@ occupations["Jayne"] = "Public Relations"
 
 <!-- Apple Books screenshot begins here. -->
 
-Arrays automatically grow as you add elements.
+С добавянето на още елементи масивите автоматично се преоразмеряват.
 
 ```swift
 fruits.append("blueberries")
@@ -284,9 +282,9 @@ print(fruits)
   ```
 -->
 
-You also use brackets to write an empty array or dictionary.
-For an array, write `[]`,
-and for a dictionary, write `[:]`.
+Квадратните скоби се използват също така за означаване на празен масив или речник.
+За масив изпишете `[]`,
+за речник - `[:]`.
 
 ```swift
 fruits = []
@@ -302,9 +300,9 @@ occupations = [:]
   ```
 -->
 
-If you're assigning an empty array or dictionary to a new variable,
-or another place where there isn't any type information,
-you need to specify the type.
+Ако присвоявате празен масив или речник на нова променлива
+или другаде, където няма информация за типа,
+ще трябва го да укажете.
 
 ```swift
 let emptyArray: [String] = []
@@ -323,13 +321,12 @@ let emptyDictionary: [String: Float] = [:]
   ```
 -->
 
-## Control Flow
+## Управление на потока на изпълнението
 
-Use `if` and `switch` to make conditionals,
-and use `for`-`in`, `while`, and `repeat`-`while`
-to make loops.
-Parentheses around the condition or loop variable are optional.
-Braces around the body are required.
+Използвайте `if` и `switch`, за да създавате условни конструкции,
+както и  `for`-`in`, `while` и `repeat`-`while` за цикли.
+Скобите около условието или променливата за цикъл са незадължителни.
+Фигурните скоби около тялото не могат да бъдат изпуснати.
 
 ```swift
 let individualScores = [75, 43, 103, 87, 12]
@@ -342,7 +339,7 @@ for score in individualScores {
     }
 }
 print(teamScore)
-// Prints "11"
+// Извежда "11"
 ```
 
 <!--
@@ -376,15 +373,15 @@ print(teamScore)
   << Would you like a jelly baby?
 -->
 
-In an `if` statement,
-the conditional must be a Boolean expression ---
-this means that code such as `if score { ... }` is an error,
-not an implicit comparison to zero.
+В една `if` конструкция условието трябва да бъде
+булев израз --- това означава, че код от вида на
+`if score { ... }` е грешка,
+а не неявно сравнение с нула.
 
-You can write `if` or `switch`
-after the equal sign (`=`) of an assignment
-or after `return`,
-to choose a value based on the condition.
+Можете да пишете `if` или `switch`
+след знака за равенство (`=`) на конструкция за присвояване
+или след `return`,
+за да се избере стойност на базата на условието.
 
 ```swift
 let scoreDecoration = if teamScore > 10 {
@@ -393,16 +390,16 @@ let scoreDecoration = if teamScore > 10 {
     ""
 }
 print("Score:", teamScore, scoreDecoration)
-// Prints "Score: 11 🎉"
+// Отпечатва "Score: 11 🎉"
 ```
 
-You can use `if` and `let` together
-to work with values that might be missing.
-These values are represented as optionals.
-An optional value either contains a value
-or contains `nil` to indicate that a value is missing.
-Write a question mark (`?`) after the type of a value
-to mark the value as optional.
+Можете да използвате `if` и `let` заедно,
+за да работите със стойности, които може да липсват.
+Тези стойности се представят като незадължителни.
+Незадължителна стойност (Optional) е такава, която или съдържа
+стойност, или `nil`, което означава, че липсва стойност.
+Добавете знак за въпросителна (`?`) след типа на дадена стойност,
+за да я отбележите като незадължителна.
 
 <!-- Apple Books screenshot ends here. -->
 
@@ -416,12 +413,12 @@ to mark the value as optional.
 ```swift
 var optionalString: String? = "Hello"
 print(optionalString == nil)
-// Prints "false"
+// Извежда "false"
 
 var optionalName: String? = "John Appleseed"
 var greeting = "Hello!"
 if let name = optionalName {
-    greeting = "Hello, \(name)"
+    greeting = "Здравейте, \(name)"
 }
 ```
 
@@ -443,27 +440,27 @@ if let name = optionalName {
   ```
 -->
 
-> Experiment: Change `optionalName` to `nil`.
-> What greeting do you get?
-> Add an `else` clause that sets a different greeting
-> if `optionalName` is `nil`.
+> Експериментирайте: Променете `optionalName` на `nil`.
+> Какъв поздрав получавате?
+> Добавете `else` клауза, която задава друг поздрав,
+> ако `optionalName` е `nil`.
 
-If the optional value is `nil`,
-the conditional is `false` and the code in braces is skipped.
-Otherwise, the optional value is unwrapped and assigned
-to the constant after `let`,
-which makes the unwrapped value available
-inside the block of code.
+Ако незадължителната стойност е `nil`,
+условната конструкция е `false` и кодът между фигурните скоби се пропуска.
+В противен случай на незадължителната стойност се премахва обвивката и тя се
+присвоява на константата след `let`,
+което прави стойността след премахване на обвивката достъпна
+вътре в блока от код.
 
-Another way to handle optional values
-is to provide a default value using the `??` operator.
-If the optional value is missing,
-the default value is used instead.
+Друг начин за работа с незадължителни стойности
+е да предоставите подразбираща се стойност посредством оператора `??`.
+Ако незадължителната стойност липсва,
+вместо това се използва подразбиращата се.
 
 ```swift
 let nickname: String? = nil
 let fullName: String = "John Appleseed"
-let informalGreeting = "Hi \(nickname ?? fullName)"
+let informalGreeting = "Здравейте, \(nickname ?? fullName)"
 ```
 
 <!--
@@ -478,14 +475,14 @@ let informalGreeting = "Hi \(nickname ?? fullName)"
   ```
 -->
 
-You can use a shorter spelling to unwrap a value,
-using the same name for that unwrapped value.
+Можете да използвате по-кратко изписване, за да премахнете обвивката от дадена стойност ---
+като използвате същото име за стойността след премахване на обвивката.
 
 ```swift
 if let nickname {
     print("Hey, \(nickname)")
 }
-// Doesn't print anything, because nickname is nil.
+// Не отпечатва нищо, защото nickname е nil.
 ```
 
 <!--
@@ -498,10 +495,10 @@ if let nickname {
   ```
 -->
 
-Switches support any kind of data
-and a wide variety of comparison operations ---
-they aren't limited to integers
-and tests for equality.
+switch конструкциите поддържат всякакъв вид данни
+и голямо разнообразие от оператори за сравнение ---
+те не са ограничени само до цели числа
+и тестове за равенство.
 
 <!--
   REFERENCE
@@ -512,18 +509,18 @@ and tests for equality.
 -->
 
 ```swift
-let vegetable = "red pepper"
+let vegetable = "червена чушка"
 switch vegetable {
 case "celery":
-    print("Add some raisins and make ants on a log.")
+    print("Добавете малко стафиди и направете мравки върху дънер.")
 case "cucumber", "watercress":
-    print("That would make a good tea sandwich.")
+    print("От това би станало добър сандвич за чай.")
 case let x where x.hasSuffix("pepper"):
-    print("Is it a spicy \(x)?")
+    print("Това люта \(x) ли е?")
 default:
-    print("Everything tastes good in soup.")
+    print("На супа всичко е вкусно.")
 }
-// Prints "Is it a spicy red pepper?"
+// Prints "Това люта червена чушка ли е?"
 ```
 
 <!--
@@ -545,30 +542,31 @@ default:
   ```
 -->
 
-> Experiment: Try removing the default case.
-> What error do you get?
+> Експериментирайте: Опитайте да премахнете подразбиращия се случай.
+> Каква грешка получавате?
 
-Notice how `let` can be used in a pattern
-to assign the value that matched the pattern
-to a constant.
+Забележете, че можете да използвате `let` в шаблон,
+за да присвоите стойността, която е съвпаднала с шаблона,
+на константа.
 
-After executing the code inside the switch case that matched,
-the program exits from the switch statement.
-Execution doesn't continue to the next case,
-so you don't need to explicitly break out of the switch
-at the end of each case’s code.
+След изпълнението на кода в съответстващия switch случай,
+програмата излиза от switch конструкцията.
+Изпълнението не продължава към следващия случай,
+така че не е необходимо изрично да указвате изход от switch
+конструкцията чрез конструкция brake
+в края на кода на всеки случай.
 
 <!--
   Omitting mention of "fallthrough" keyword.
   It's in the guide/reference if you need it.
 -->
 
-You use `for`-`in` to iterate over items in a dictionary
-by providing a pair of names to use
-for each key-value pair.
-Dictionaries are an unordered collection,
-so their keys and values are iterated over
-in an arbitrary order.
+`for`-`in` се използва за итериране през елементите на речник,
+като е необходимо да предоставите двойка имена, които да се 
+използват за всяка двойка ключ-стойност.
+Речниците представляват неподредена колекция,
+поради което техните ключове и стойности се итерират
+в произволен ред.
 
 <!--
   REFERENCE
@@ -580,9 +578,9 @@ in an arbitrary order.
 
 ```swift
 let interestingNumbers = [
-    "Prime": [2, 3, 5, 7, 11, 13],
-    "Fibonacci": [1, 1, 2, 3, 5, 8],
-    "Square": [1, 4, 9, 16, 25],
+    "Прости": [2, 3, 5, 7, 11, 13],
+    "Фибоначи": [1, 1, 2, 3, 5, 8],
+    "Квадратни": [1, 4, 9, 16, 25],
 ]
 var largest = 0
 for (_, numbers) in interestingNumbers {
@@ -593,7 +591,7 @@ for (_, numbers) in interestingNumbers {
     }
 }
 print(largest)
-// Prints "25"
+// Извежда "25"
 ```
 
 <!--
@@ -618,12 +616,13 @@ print(largest)
   ```
 -->
 
-> Experiment: Replace the `_` with a variable name,
-> and keep track of which kind of number was the largest.
+> Експериментирайте: Заместете `_` с име на променлива
+> и следете от кой вид е най-голямото число.
 
-Use `while` to repeat a block of code until a condition changes.
-The condition of a loop can be at the end instead,
-ensuring that the loop is run at least once.
+Използвайте `while`, за да повтаряте блок от код, докато
+дадено условие не се промени.
+Условието на цикъла може вместо в началото, да бъде накрая,
+за да се гарантира, че цикълът ще бъде изпълнен поне веднъж.
 
 <!--
   REFERENCE
@@ -638,14 +637,14 @@ while n < 100 {
     n *= 2
 }
 print(n)
-// Prints "128"
+// Извежда "128"
 
 var m = 2
 repeat {
     m *= 2
 } while m < 100
 print(m)
-// Prints "128"
+// Извежда "128"
 ```
 
 <!--
@@ -668,13 +667,13 @@ print(m)
   ```
 -->
 
-> Experiment:
-> Change the condition from `m < 100` to `m < 0`
-> to see how `while` and `repeat`-`while` behave differently
-> when the loop condition is already false.
+> Експериментирайте:
+> Променете условието от `m < 100` на `m < 0`,
+> за да видите как `while` и `repeat`-`while` се държат по различен начин,
+> когато условието на цикъла е вече false.
 
-You can keep an index in a loop
-by using `..<` to make a range of indexes.
+В един цикъл можете да поддържате индекс, като създадете област от индекси
+с помощта на `..<`.
 
 ```swift
 var total = 0
@@ -682,7 +681,7 @@ for i in 0..<4 {
     total += i
 }
 print(total)
-// Prints "6"
+// Извежда "6"
 ```
 
 <!--
@@ -698,16 +697,15 @@ print(total)
   ```
 -->
 
-Use `..<` to make a range that omits its upper value,
-and use `...` to make a range that includes both values.
+Използвайте `..<`, за да създадете област, в която горната стойност е изпусната;
+използвайте `...`, за да създадете стойност, която включва и двете стойности.
 
-## Functions and Closures
+## Функции и затваряния
 
-Use `func` to declare a function.
-Call a function by following its name
-with a list of arguments in parentheses.
-Use `->` to separate the parameter names and types
-from the function's return type.
+Използвайте `func`, за да декларирате функция.
+Извикайте функцията, като след името й предоставите списък с аргументи в скоби.
+Използвайте `->`, за да отделите имената и типовете на параметрите от типа данни,
+който функцията връща.
 
 <!--
   REFERENCE
@@ -719,9 +717,9 @@ from the function's return type.
 
 ```swift
 func greet(person: String, day: String) -> String {
-    return "Hello \(person), today is \(day)."
+    return "Здравейте, \(person), днес е \(day)."
 }
-greet(person: "Bob", day: "Tuesday")
+greet(person: "Bob", day: "вторник")
 ```
 
 <!--
@@ -738,20 +736,19 @@ greet(person: "Bob", day: "Tuesday")
   ```
 -->
 
-> Experiment: Remove the `day` parameter.
-> Add a parameter to include today’s lunch special in the greeting.
+> Експериментирайте: Премахнете параметъра `day`.
+> Добавете параметър, с който да включите днешното специално предложение от обедното меню в поздрава.
 
-By default,
-functions use their parameter names
-as labels for their arguments.
-Write a custom argument label before the parameter name,
-or write `_` to use no argument label.
+По подразбиране функциите използват имената на своите параметри
+като етикети за своите аргументи.
+Пишете собствен етикет на аргумента преди името на параметъра или
+`_`, за да използвате аргумента без етикет.
 
 ```swift
 func greet(_ person: String, on day: String) -> String {
-    return "Hello \(person), today is \(day)."
+    return "Здравейте, \(person), днес е \(day)."
 }
-greet("John", on: "Wednesday")
+greet("John", on: "сряда")
 ```
 
 <!--
@@ -768,10 +765,10 @@ greet("John", on: "Wednesday")
   ```
 -->
 
-Use a tuple to make a compound value ---
-for example, to return multiple values from a function.
-The elements of a tuple can be referred to
-either by name or by number.
+Използвайте кортеж (tuple), за да създадете съставна стойност ---
+например, за да върнете повече от една стойност от дадена функция.
+Елементите на един кортеж могат да бъдат реферирани или 
+по име, или по пореден номер.
 
 <!--
   REFERENCE
@@ -800,9 +797,9 @@ func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
 }
 let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
 print(statistics.sum)
-// Prints "120"
+// Извежда "120"
 print(statistics.2)
-// Prints "120"
+// Извежда "120"
 ```
 
 <!--
@@ -835,12 +832,11 @@ print(statistics.2)
   ```
 -->
 
-Functions can be nested.
-Nested functions have access to variables
-that were declared in the outer function.
-You can use nested functions
-to organize the code in a function
-that's long or complex.
+Функциите могат да се влагат една в друга.
+Вложените функции имат достъп до променливите,
+декларирани във външната функция.
+Можете да използвате вложени функции, за да да организирате
+кода в дадена функция по-добре, когато той е дълъг или сложен.
 
 ```swift
 func returnFifteen() -> Int {
@@ -873,8 +869,8 @@ returnFifteen()
   ```
 -->
 
-Functions are a first-class type.
-This means that a function can return another function as its value.
+Функциите са тип от първи клас.
+Това означава, че една функция може да връща друга като своя стойност.
 
 ```swift
 func makeIncrementer() -> ((Int) -> Int) {
@@ -905,7 +901,7 @@ increment(7)
   ```
 -->
 
-A function can take another function as one of its arguments.
+Една функция може да приема друга като аргумент.
 
 ```swift
 func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
@@ -946,15 +942,15 @@ hasAnyMatches(list: numbers, condition: lessThanTen)
   ```
 -->
 
-Functions are actually a special case of closures:
-blocks of code that can be called later.
-The code in a closure has access to things like variables and functions
-that were available in the scope where the closure was created,
-even if the closure is in a different scope when it's executed ---
-you saw an example of this already with nested functions.
-You can write a closure without a name
-by surrounding code with braces (`{}`).
-Use `in` to separate the arguments and return type from the body.
+Всъщност функциите са специален случай на затварянията (closures):
+блокове от код, които могат да бъдат извикани по-късно.
+Кодът в едно затваряне има достъп до такива елементи като променливите и функциите,
+които са достъпни в обхвата, където затварянето е създадено,
+дори ако то е в друг обхват, когато бъде изпълнявано ---
+вече видяхте пример за това при вложените функции.
+Можете да създадете затваряне без име, като 
+оградите кода във фигурни скоби (`{}`).
+Използвайте `in`, за да отделите аргументите и връщания тип от тялото.
 
 ```swift
 numbers.map({ (number: Int) -> Int in
@@ -977,20 +973,20 @@ numbers.map({ (number: Int) -> Int in
   ```
 -->
 
-> Experiment: Rewrite the closure to return zero for all odd numbers.
+> Експериментирайте: Променете затварянето така, че да връща нула за всички нечетни числа.
 
-You have several options for writing closures more concisely.
-When a closure's type is already known,
-such as the callback for a delegate,
-you can omit the type of its parameters,
-its return type, or both.
-Single statement closures implicitly return the value
-of their only statement.
+Имате на разположение няколко възможности да пишете затварянията по-сбито.
+Когато типът на едно затваряне е вече известен,
+например при callback за делегат,
+можете да пропуснете типа на неговите параметри,
+неговия връщан тип, или и двете.
+Затварянията, съставени от една-единствена конструкция, неявно връщат стойността
+на тази конструкция.
 
 ```swift
 let mappedNumbers = numbers.map({ number in 3 * number })
 print(mappedNumbers)
-// Prints "[60, 57, 21, 36]"
+// Извежда "[60, 57, 21, 36]"
 ```
 
 <!--
@@ -1003,17 +999,17 @@ print(mappedNumbers)
   ```
 -->
 
-You can refer to parameters by number instead of by name ---
-this approach is especially useful in very short closures.
-A closure passed as the last argument to a function
-can appear immediately after the parentheses.
-When a closure is the only argument to a function,
-you can omit the parentheses entirely.
+Можете да реферирате параметрите по пореден номер вместо по име ---
+този подход е особено полезен в много кратки затваряния.
+Затваряне, предадено като последен аргумент на функция,
+може да бъде изписано непосредствено след скобите.
+Когато едно затваряне е единственият аргумент на дадена функция,
+можете изцяло да пропуснете скобите.
 
 ```swift
 let sortedNumbers = numbers.sorted { $0 > $1 }
 print(sortedNumbers)
-// Prints "[20, 19, 12, 7]"
+// Извежда "[20, 19, 12, 7]"
 ```
 
 <!--
@@ -1038,13 +1034,13 @@ print(sortedNumbers)
   Omitted custom operators as "advanced" topics.
 -->
 
-## Objects and Classes
+## Обекти и класове
 
-Use `class` followed by the class's name to create a class.
-A property declaration in a class is written the same way
-as a constant or variable declaration,
-except that it's in the context of a class.
-Likewise, method and function declarations are written the same way.
+Използвайте `class`, след което името на класа, за да създадете клас.
+Декларация на свойство в един клас се пише по същия начин
+като декларация на константа или променлива,
+с тази разлика, че е в контекста на клас.
+По подобен начин декларациите на методи и функции се пишат по същия начин.
 
 <!--
   REFERENCE
@@ -1060,7 +1056,7 @@ Likewise, method and function declarations are written the same way.
 class Shape {
     var numberOfSides = 0
     func simpleDescription() -> String {
-        return "A shape with \(numberOfSides) sides."
+        return "Фигура с \(numberOfSides) страни."
     }
 }
 ```
@@ -1080,13 +1076,13 @@ class Shape {
   ```
 -->
 
-> Experiment: Add a constant property with `let`,
-> and add another method that takes an argument.
+> Експериментирайте: Добавете константно свойство с `let`
+> и друг метод, който приема аргумент.
 
-Create an instance of a class
-by putting parentheses after the class name.
-Use dot syntax to access
-the properties and methods of the instance.
+Създайте екземпляр на даден клас, като поставите скоби след името
+на класа.
+Използвайте синтаксис с точка, за да получите достъп до свойствата
+и методите на екземпляра.
 
 ```swift
 var shape = Shape()
@@ -1106,9 +1102,9 @@ var shapeDescription = shape.simpleDescription()
   ```
 -->
 
-This version of the `Shape` class is missing something important:
-an initializer to set up the class when an instance is created.
-Use `init` to create one.
+В тази версия на класа `Shape` липсва нещо важно:
+инициализатор, който да направи първоначалното установяване, когато се създава екземпляр на класа.
+За да създадете инициализатор, използвайте `init`.
 
 ```swift
 class NamedShape {
@@ -1120,7 +1116,7 @@ class NamedShape {
     }
 
     func simpleDescription() -> String {
-       return "A shape with \(numberOfSides) sides."
+       return "Фигура с \(numberOfSides) страни."
     }
 }
 ```
@@ -1148,30 +1144,29 @@ class NamedShape {
   ```
 -->
 
-Notice how `self` is used to distinguish the `name` property
-from the `name` argument to the initializer.
-The arguments to the initializer are passed like a function call
-when you create an instance of the class.
-Every property needs a value assigned ---
-either in its declaration (as with `numberOfSides`)
-or in the initializer (as with `name`).
+Забележете, че за да се различи свойството `name` от
+аргумента `name` на инициализатора, се използва `self`.
+Аргументите на инициализатора се предават по същия начин както в извикване на функция,
+когато създавате екземпляр на класа.
+Всяко свойство трябва да има присвоена стойност ---
+или в неговата декларация (както при `numberOfSides`),
+или в инициализатора (както при `name`).
 
-Use `deinit` to create a deinitializer
-if you need to perform some cleanup
-before the object is deallocated.
+Използвайте `deinit`, за да създадете деинициализатор,
+ако трябва да извършите някакъв вид почистване,
+преди паметта за обекта да бъде освободена.
 
-Subclasses include their superclass name
-after their class name,
-separated by a colon.
-There's no requirement for classes to subclass any standard root class,
-so you can include or omit a superclass as needed.
+Подкласовете включват името на своя надклас
+след своето име, следвано от двоеточие.
+Няма изискване класовете да произхождат от някакъв стандарен коренен клас,
+така че можете да включвате или пропускате надклас според нуждата.
 
-Methods on a subclass that override the superclass's implementation
-are marked with `override` ---
-overriding a method by accident, without `override`,
-is detected by the compiler as an error.
-The compiler also detects methods with `override`
-that don't actually override any method in the superclass.
+Методите на един подклас, които предефинират реализацията, дефинирана от надкласа,
+се маркират с `override` ---
+предефиниране на метод по погрешка, без `override`,
+се разпознава от компилатора като грешка.
+Също така компилаторът разпознава методите с `override`,
+които в действителност не предефинират метод от надкласа.
 
 ```swift
 class Square: NamedShape {
@@ -1188,7 +1183,7 @@ class Square: NamedShape {
     }
 
     override func simpleDescription() -> String {
-        return "A square with sides of length \(sideLength)."
+        return "Квадрат със страни с дължина \(sideLength)."
     }
 }
 let test = Square(sideLength: 5.2, name: "my test square")
@@ -1229,15 +1224,15 @@ test.simpleDescription()
   ```
 -->
 
-> Experiment: Make another subclass of `NamedShape`
-> called `Circle`
-> that takes a radius and a name
-> as arguments to its initializer.
-> Implement an `area()` and a `simpleDescription()` method
-> on the `Circle` class.
+> Експериментирайте: Създайте друг подклас на `NamedShape`,
+> с име `Circle`,
+> който приема радиус и име
+> като аргументи на своя инициализатор.
+> Реализирайте методите `area()` и `simpleDescription()`
+> на класа `Circle`.
 
-In addition to simple properties that are stored,
-properties can have a getter and a setter.
+Освен простите свойства, които съхраняват стойност,
+може да има свойства с get (за получаване на стойност) и set (за задаване на стойност) процедура.
 
 ```swift
 class EquilateralTriangle: NamedShape {
@@ -1259,15 +1254,15 @@ class EquilateralTriangle: NamedShape {
     }
 
     override func simpleDescription() -> String {
-        return "An equilateral triangle with sides of length \(sideLength)."
+        return "Равностранен триъгълник със страни с дължина \(sideLength)."
     }
 }
-var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
+var triangle = EquilateralTriangle(sideLength: 3.1, name: "триъгълник")
 print(triangle.perimeter)
-// Prints "9.3"
+// Извежда "9.3"
 triangle.perimeter = 9.9
 print(triangle.sideLength)
-// Prints "3.3000000000000003"
+// Извежда "3.3000000000000003"
 ```
 
 <!--
@@ -1293,7 +1288,7 @@ print(triangle.sideLength)
          }
   ---
          override func simpleDescription() -> String {
-             return "An equilateral triangle with sides of length \(sideLength)."
+             return "Равностранен триъгълник със страни с дължина \(sideLength)."
          }
      }
   -> var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
@@ -1304,27 +1299,26 @@ print(triangle.sideLength)
   <- 3.3000000000000003
   ```
 -->
+<!--->??? HERE-MARKER ???--->
+В set процедурата за `perimeter` новата стойност 
+има неявно име `newValue`.
+Можете да предоставите изрично име в скоби след `set`.
 
-In the setter for `perimeter`,
-the new value has the implicit name `newValue`.
-You can provide an explicit name in parentheses after `set`.
+Забележете, че инициализаторът на класа `EquilateralTriangle`
+включва три различни стъпки:
 
-Notice that the initializer for the `EquilateralTriangle` class
-has three different steps:
+1. Задаване на стойността на свойствата, декларирани от подкласа.
+2. Извикване на инициализатора на надкласа.
+3. Промяна на стойностите на свойства, дефинирани от надкласа.
+   Ако е необходима друга допълнителна инициализация, която използва методи,
+   `get` или `set` процедури, тя също може да бъде направена тук.
 
-1. Setting the value of properties that the subclass declares.
-2. Calling the superclass's initializer.
-3. Changing the value of properties defined by the superclass.
-   Any additional setup work that uses methods, getters, or setters
-   can also be done at this point.
-
-If you don't need to compute the property
-but still need to provide code that's run before and after setting a new value,
-use `willSet` and `didSet`.
-The code you provide is run any time the value changes outside of an initializer.
-For example, the class below ensures
-that the side length of its triangle
-is always the same as the side length of its square.
+Ако не е необходимо да изчислявате свойството,
+но все пак да предоставите код, който се изпълнява преди и след задаването на нова стойност,
+използвайте `willSet` и `didSet`.
+Кодът, който предоставите, се изпълнява винаги, когато стойността бъде променена извън инициализатора.
+Например класът по-долу гарантира, че дължината на страната на неговия триъгълник
+е винаги същата като дължината на страната на неговия квадрат.
 
 <!--
   This triangle + square example could use improvement.
@@ -1352,12 +1346,12 @@ class TriangleAndSquare {
 }
 var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
 print(triangleAndSquare.square.sideLength)
-// Prints "10.0"
+// Отпечатва "10.0"
 print(triangleAndSquare.triangle.sideLength)
-// Prints "10.0"
+// Отпечатва "10.0"
 triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
 print(triangleAndSquare.triangle.sideLength)
-// Prints "50.0"
+// Отпечатва "50.0"
 ```
 
 <!--
@@ -1398,15 +1392,14 @@ print(triangleAndSquare.triangle.sideLength)
   to use them outside a class or a struct.
 -->
 
-When working with optional values,
-you can write `?` before operations like methods, properties, and subscripting.
-If the value before the `?` is `nil`,
-everything after the `?` is ignored
-and the value of the whole expression is `nil`.
-Otherwise, the optional value is unwrapped,
-and everything after the `?` acts on the unwrapped value.
-In both cases,
-the value of the whole expression is an optional value.
+Когато работите с незадължителни стойности,
+можете да пишете `?` преди операции като методи, свойства и достъп до елемент на масив или речник.
+Ако стойността преди `?` е `nil`,
+всичко след `?` се игнорира
+и стойността на целия израз е `nil`.
+В противен случай незадължителната стойност се изважда от обвивката
+и всичко след `?` действа като стойност след изваждането.
+И в двата случая стойността на целия израз е незадължителна стойност.
 
 ```swift
 let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
@@ -1422,11 +1415,11 @@ let sideLength = optionalSquare?.sideLength
   ```
 -->
 
-## Enumerations and Structures
+## Изброявания и структури
 
-Use `enum` to create an enumeration.
-Like classes and all other named types,
-enumerations can have methods associated with them.
+Използвайте `enum`, за да създадете изброяване.
+Подобно на класовете и всички други именувани типове
+към изброяванията може да има асоциирани методи.
 
 <!--
   REFERENCE
@@ -1494,22 +1487,18 @@ let aceRawValue = ace.rawValue
   ```
 -->
 
-> Experiment: Write a function that compares two `Rank` values
-> by comparing their raw values.
+> Експериментирайте: Напишете функция, която сравнява две стойности `Rank`,
+> като сравни числовите стойности, които стоят под тях.
 
-By default, Swift assigns the raw values starting at zero
-and incrementing by one each time,
-but you can change this behavior by explicitly specifying values.
-In the example above, `Ace` is explicitly given a raw value of `1`,
-and the rest of the raw values are assigned in order.
-You can also use strings or floating-point numbers
-as the raw type of an enumeration.
-Use the `rawValue` property to access the raw value of an enumeration case.
+По подразбиране Swift задава съответстващите стойности на изброяването започвайки от нула и инкрементирайки ги
+с едно всеки път, но можете да промените това поведение, като изрично зададете свои 
+стойности.
+В примера по-горе на `Ace` изрично се дава стойност `1`, а останалите стойности се задават по реда им по-нататък.
+Като стойности, съответстващи на членовете на изброяването, можете да използвате низове или числа с плаваща запетая вместо цели числа.
+За да получите достъп до съответстващата стойност на определен член на изброяване, използвайте свойството `rawValue`.
 
-Use the `init?(rawValue:)` initializer
-to make an instance of an enumeration from a raw value.
-It returns either the enumeration case matching the raw value
-or `nil` if there's no matching `Rank`.
+Използвайте инициализатора `init?(rawValue:)`, за да създадете екземпляр на дадено изброяване от конкретна съответстваща стойност.
+Той връща или члена на изброяването, който съответства на исканата стойност, или `nil`, ако няма съответстващ `Rank`.
 
 ```swift
 if let convertedRank = Rank(rawValue: 3) {
@@ -1529,11 +1518,10 @@ if let convertedRank = Rank(rawValue: 3) {
   ```
 -->
 
-The case values of an enumeration are actual values,
-not just another way of writing their raw values.
-In fact,
-in cases where there isn't a meaningful raw value,
-you don't have to provide one.
+Отделните случаи в едно изброяване са действителни стойности, не просто
+друг начин за записване на съответстваща стойност.
+Нещо повече, в случаите, където няма смислена съответстваща стойност, 
+не е необходимо да предоставяте такава.
 
 ```swift
 enum Suit {
@@ -1603,21 +1591,19 @@ because the value of `self` is already known to be a suit.
 You can use the abbreviated form
 anytime the value's type is already known.
 
-If an enumeration has raw values,
-those values are determined as part of the declaration,
-which means every instance of a particular enumeration case
-always has the same raw value.
-Another choice for enumeration cases
-is to have values associated with the case ---
-these values are determined when you make the instance,
-and they can be different for each instance of an enumeration case.
-You can think of the associated values
-as behaving like stored properties of the enumeration case instance.
-For example,
-consider the case of requesting
-the sunrise and sunset times from a server.
-The server either responds with the requested information,
-or it responds with a description of what went wrong.
+Ако на случаите на едно изброяване има зададени стойности,
+те се определят като част от декларацията, което
+означава, че всеки екземпляр на случай на изброяването
+винаги има една и съща съответстваща стойност.
+Друг избор за случаите на изброяването е да има
+стойности, асоциирани с този случай ---
+тези стойности се определят, когато създавате екземпляра;
+те може да са различни за всеки екземпляр на случай на изброяването.
+Бихте могли да мислите за асоциираните стойности като за съхранени свойства 
+на екземпляра на случая на изброяването.
+Да вземем като пример изпращането на заявка към сървър за времената на изгрева и залеза на 
+слънцето. Сървърът или отговаря с исканата информация,
+или отговаря с описание на това какво не е сработило.
 
 <!--
   REFERENCE
@@ -1660,15 +1646,15 @@ enum ServerResponse {
 }
 
 let success = ServerResponse.result("6:00 am", "8:09 pm")
-let failure = ServerResponse.failure("Out of cheese.")
+let failure = ServerResponse.failure("Сиренето свърши.")
 
 switch success {
 case let .result(sunrise, sunset):
-    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+    print("Изгревът е в \(sunrise), залезът е в \(sunset).")
 case let .failure(message):
-    print("Failure...  \(message)")
+    print("Грешка...  \(message)")
 }
-// Prints "Sunrise is at 6:00 am and sunset is at 8:09 pm."
+// Отпечатва "Изгревът е в 6:00 am, залезът е в 8:09 pm."
 ```
 
 <!--
@@ -1693,19 +1679,18 @@ case let .failure(message):
   ```
 -->
 
-> Experiment: Add a third case to `ServerResponse` and to the switch.
+> Експериментирайте: Добавете трети случай към `ServerResponse` и към switch конструкцията.
 
-Notice how the sunrise and sunset times
-are extracted from the `ServerResponse` value
-as part of matching the value against the switch cases.
+Забележете, че времената на изгрева и залеза
+се извличат от `ServerResponse` стойността
+като част от съпоставянето на стойността спрямо случаите на switch конструкцията.
 
-Use `struct` to create a structure.
-Structures support many of the same behaviors as classes,
-including methods and initializers.
-One of the most important differences
-between structures and classes is that
-structures are always copied when they're passed around in your code,
-but classes are passed by reference.
+Използвайте `struct`, за да създадете структура.
+Структурите в много отношения се държат като класовете,
+включително могат да имат методи и инициализатори.
+Една от най-важните разлики между структурите и класовете е, че
+структурите винаги се копират, когато се предават в кода,
+но класовете се предават по референция.
 
 ```swift
 struct Card {
@@ -1741,9 +1726,9 @@ let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 > a full deck of cards,
 > with one card of each combination of rank and suit.
 
-## Concurrency
+## Едновременност
 
-Use `async` to mark a function that runs asynchronously.
+Използвайте `async`, за да маркирате функция, която се изпълнява асинхронно.
 
 ```swift
 func fetchUserID(from server: String) async -> Int {
@@ -1767,7 +1752,7 @@ func fetchUserID(from server: String) async -> Int {
   ```
 -->
 
-You mark a call to an asynchronous function by writing `await` in front of it.
+Извикването на асинхронна функция се изписва с `await` отпред.
 
 ```swift
 func fetchUsername(from server: String) async -> String {
@@ -1793,9 +1778,9 @@ func fetchUsername(from server: String) async -> String {
   ```
 -->
 
-Use `async let` to call an asynchronous function,
-letting it run in parallel with other asynchronous code.
-When you use the value it returns, write `await`.
+Използвайте `async let`, за да извикате асинхронна функция,
+позволявайки и да се изпълнява паралелно с друг асинхронен код.
+Когато използвате стойността, която тя връща, напишете `await`.
 
 ```swift
 func connectUser(to server: String) async {
@@ -1819,14 +1804,14 @@ func connectUser(to server: String) async {
   ```
 -->
 
-Use `Task` to call asynchronous functions from synchronous code,
-without waiting for them to return.
+Използвайте `Task`, за да извиквате асинхронни функции от синхронен код,
+без да чакате връщането от тях.
 
 ```swift
 Task {
     await connectUser(to: "primary")
 }
-// Prints "Hello Guest, user ID 97"
+// Отпечатва "Здравей, Guest, потребител с ID 97"
 ```
 
 <!--
@@ -1841,7 +1826,7 @@ Task {
   ```
 -->
 
-Use task groups to structure concurrent code.
+Използвайте групи от задачи, за да структурирате едновременно изпълняващ се код.
 
 ```swift
 let userIDs = await withTaskGroup(of: Int.self) { group in
@@ -1859,9 +1844,9 @@ let userIDs = await withTaskGroup(of: Int.self) { group in
 }
 ```
 
-Actors are similar to classes,
-except they ensure that different asynchronous functions
-can safely interact with an instance of the same actor at the same time.
+Акторите са подобни на класовете, с тази разлика, че те
+създават условия за това различни асинхронни функции безопасно да
+взаимодействат с екземпляр на един и същи актор по едно и също време.
 
 ```swift
 actor ServerConnection {
@@ -1891,10 +1876,9 @@ actor ServerConnection {
   ```
 -->
 
-When you call a method on an actor or access one of its properties,
-you mark that code with `await`
-to indicate that it might have to wait for other code
-that's already running on the actor to finish.
+Когато извиквате метод на актор или осъществявате достъп до едно от неговите свойства,
+трябва да маркирате кода с `await`, за да посочите, че е възможно той да трябва да 
+чака друг код, който вече се изпълнява върху актора, да завърши.
 
 ```swift
 let server = ServerConnection()
@@ -1911,9 +1895,9 @@ let userID = await server.connect()
 -->
 
 
-## Protocols and Extensions
+## Протоколи и разширения
 
-Use `protocol` to declare a protocol.
+Декларирайте протокол с `protocol`.
 
 ```swift
 protocol ExampleProtocol {
@@ -1933,7 +1917,7 @@ protocol ExampleProtocol {
   ```
 -->
 
-Classes, enumerations, and structures can all adopt protocols.
+И класовете, и изброяванията, и структурите могат да възприемат протоколи.
 
 <!--
   REFERENCE
@@ -1997,35 +1981,32 @@ let bDescription = b.simpleDescription
   ```
 -->
 
-> Experiment: Add another requirement to `ExampleProtocol`.
-> What changes do you need to make
-> to `SimpleClass` and `SimpleStructure`
-> so that they still conform to the protocol?
+> Експериментирайте: Добавете друго изискване към `ExampleProtocol`.
+> Какви промени в `SimpleClass` и `SimpleStructure` трябва да направите така, че
+> те пак да отговарят на протокола?
 
-Notice the use of the `mutating` keyword
-in the declaration of `SimpleStructure`
-to mark a method that modifies the structure.
-The declaration of `SimpleClass` doesn't need
-any of its methods marked as mutating
-because methods on a class can always modify the class.
+Забележете, че в декларацията на `SimpleStructure` метод, който променя структурата,
+е маркиран с ключовата дума `mutating`.
+В декларацията на `SimpleClass` не е необходимо никой от методите
+да се маркира като `mutating`, защото методите на един клас винаги могат да променят класа.
 
-Use `extension` to add functionality to an existing type,
-such as new methods and computed properties.
-You can use an extension to add protocol conformance
-to a type that's declared elsewhere,
-or even to a type that you imported from a library or framework.
+Използвайте `extension`, за да добавите функционалност към съществуващ тип,
+например нови методи и изчислени свойства.
+С помощта на разширение можете да добавите съвместимост с протокол към тип,
+който е дефиниран другаде, или дори към тип, който е импортиран от библиотека
+или фреймуърк.
 
 ```swift
 extension Int: ExampleProtocol {
     var simpleDescription: String {
-        return "The number \(self)"
+        return "Числото \(self)"
     }
     mutating func adjust() {
         self += 42
     }
  }
 print(7.simpleDescription)
-// Prints "The number 7"
+// Отпечатва "Числото 7"
 ```
 
 <!--
@@ -2045,21 +2026,20 @@ print(7.simpleDescription)
   ```
 -->
 
-> Experiment: Write an extension for the `Double` type
-> that adds an `absoluteValue` property.
+> Експериментирайте: Създайте разширение на типа `Double`,
+> което добавя свойство `absoluteValue`.
 
-You can use a protocol name just like any other named type ---
-for example, to create a collection of objects
-that have different types
-but that all conform to a single protocol.
-When you work with values whose type is a boxed protocol type,
-methods outside the protocol definition aren't available.
+Можете да използвате име на протокол като всеки друг именуван тип ---
+например за да създадете колекция от обекти, които имат
+различни типове, но всички отговарят на конкретен протокол.
+Когато работите със стойности, чийто тип е опакован протоколен тип,
+методите извън дефиницията на протокола не са достъпни.
 
 ```swift
 let protocolValue: any ExampleProtocol = a
 print(protocolValue.simpleDescription)
-// Prints "A very simple class.  Now 100% adjusted."
-// print(protocolValue.anotherProperty)  // Uncomment to see the error
+// Prints "Един много прост клас. Сега вече 100% нагласен."
+// print(protocolValue.anotherProperty)  // Премахнете коментара, за да видите грешката
 ```
 
 <!--
@@ -2073,16 +2053,16 @@ print(protocolValue.simpleDescription)
   ```
 -->
 
-Even though the variable `protocolValue`
-has a runtime type of `SimpleClass`,
-the compiler treats it as the given type of `ExampleProtocol`.
-This means that you can't accidentally access
-methods or properties that the class implements
-in addition to its protocol conformance.
+Въпреки че променливата `protocolValue`
+има тип по време на изпълнението `SimpleClass`,
+компилаторът я третира като дадения тип `ExampleProtocol`.
+Това означава, че не може случайно да се получи достъп до
+методи и свойства, които класът реализира в допълнение към
+тези, реализирани за изпълнение на изискванията на протокола.
 
-## Error Handling
+## Обработка на грешки
 
-You represent errors using any type that adopts the `Error` protocol.
+Грешките се представят посредством произволен тип, който възприема протокола `Error`.
 
 <!--
   REFERENCE
@@ -2123,11 +2103,9 @@ enum PrinterError: Error {
   ```
 -->
 
-Use `throw` to throw an error
-and `throws` to mark a function that can throw an error.
-If you throw an error in a function,
-the function returns immediately and the code that called the function
-handles the error.
+Използвайте `throw`, за да хвърлите грешка,
+и `throws`, за да маркирате функция, коятоможе да хвърли грешка.
+Ако хвърлите грешка в някоя функция, тя връща управлението незабавно и кодът, който я е  извикал, обработва грешката.
 
 ```swift
 func send(job: Int, toPrinter printerName: String) throws -> String {
@@ -2151,13 +2129,11 @@ func send(job: Int, toPrinter printerName: String) throws -> String {
   ```
 -->
 
-There are several ways to handle errors.
-One way is to use `do`-`catch`.
-Inside the `do` block,
-you mark code that can throw an error by writing `try` in front of it.
-Inside the `catch` block,
-the error is automatically given the name `error`
-unless you give it a different name.
+Има няколко начина да обработвате грешки.
+Един от тях е да използвате `do`-`catch`.
+Вътру в `do` блока маркирате кода, който може да хвърли грешка, като напишете `try` пред него.
+В `catch` блока на грешката автоматично се дава име `error`,
+освен ако не използвате друго име.
 
 ```swift
 do {
@@ -2166,7 +2142,7 @@ do {
 } catch {
     print(error)
 }
-// Prints "Job sent"
+// Отпечатва "Job sent"
 ```
 
 <!--
@@ -2183,8 +2159,8 @@ do {
   ```
 -->
 
-> Experiment: Change the printer name to `"Never Has Toner"`,
-> so that the `send(job:toPrinter:)` function throws an error.
+> Експериментирайти: Промерете името на принтера на `"Никога няма тонер"`,
+> така че функцията `send(job:toPrinter:)` да хвърля грешка.
 
 <!--
   Assertion tests the change that the Experiment box instructs you to make.
@@ -2204,10 +2180,10 @@ do {
   ```
 -->
 
-You can provide multiple `catch` blocks
-that handle specific errors.
-You write a pattern after `catch` just as you do
-after `case` in a switch.
+Можете да предоставите повече от един `catch` блока,
+които обработват конкретни грешки.
+След `catch` се пише шаблон също както при `case` условията
+на една `switch` конструкция.
 
 <!--
   REFERENCE
@@ -2219,9 +2195,9 @@ do {
     let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
     print(printerResponse)
 } catch PrinterError.onFire {
-    print("I'll just put this over here, with the rest of the fire.")
+    print("Просто ще оставя това тук, при другия огън.")
 } catch let printerError as PrinterError {
-    print("Printer error: \(printerError).")
+    print("Грешка на принтера: \(printerError).")
 } catch {
     print(error)
 }
@@ -2246,17 +2222,17 @@ do {
   ```
 -->
 
-> Experiment: Add code to throw an error inside the `do` block.
-> What kind of error do you need to throw
-> so that the error is handled by the first `catch` block?
-> What about the second and third blocks?
+> Експериментирайте: Добавете код, който да хвърля грешка вътре в `do` блока.
+> Какъв вид грешка трябва да хвърлите,
+> така че тя да бъде обработена от първия `catch` блок?
+> Какво може да се каже за втория и третия блокове?
 
-Another way to handle errors
-is to use `try?` to convert the result to an optional.
-If the function throws an error,
-the specific error is discarded and the result is `nil`.
-Otherwise, the result is an optional containing
-the value that the function returned.
+Друг начин да обработвате грешките
+е като преобразувате резултата към незадължителна стойност посредством `try?`.
+Ако функцията хвърли грешка,
+конкретната грешка се отхвърля и резултатът е `nil`.
+В противен случай резултатът е незадължителна стойност, съдържаща
+стойността, върната от функцията.
 
 ```swift
 let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
@@ -2275,13 +2251,13 @@ let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
   << nil
   ```
 -->
+Използвайте `defer`, за да напишете блок от код,
+който се изпълнява след всеки друг код във функцията,
+точно преди функцията да върне управлението.
+Кодът се изпълнява независимо от това дали функцията хвърля грешка.
+С помощта на `defer` можете да пишете код за инициализация и такъв за почистване един до друг,
+независимо от това, че те трябва да бъдат изпълнени по различно време.
 
-Use `defer` to write a block of code
-that's executed after all other code in the function,
-just before the function returns.
-The code is executed regardless of whether the function throws an error.
-You can use `defer` to write setup and cleanup code next to each other,
-even though they need to be executed at different times.
 
 ```swift
 var fridgeIsOpen = false
@@ -2297,10 +2273,10 @@ func fridgeContains(_ food: String) -> Bool {
     return result
 }
 if fridgeContains("banana") {
-    print("Found a banana")
+    print("Открит е банан")
 }
 print(fridgeIsOpen)
-// Prints "false"
+// Отпечатва "false"
 ```
 
 <!--
@@ -2328,10 +2304,10 @@ print(fridgeIsOpen)
   ```
 -->
 
-## Generics
+## Обобщени типове
 
-Write a name inside angle brackets
-to make a generic function or type.
+Напишете име в ъглови скоби, за да създадете
+обобщена функция или тип.
 
 <!--
   REFERENCE
@@ -2369,11 +2345,11 @@ makeArray(repeating: "knock", numberOfTimes: 4)
   ```
 -->
 
-You can make generic forms of functions and methods,
-as well as classes, enumerations, and structures.
+Можете да правите обобщени форми на функции и методи,
+както и на класове, изброявания и структури.
 
 ```swift
-// Reimplement the Swift standard library's optional type
+// Друга реализация на незадължителния тип от стандартната библиотека на Swift
 enum OptionalValue<Wrapped> {
     case none
     case some(Wrapped)
@@ -2396,12 +2372,11 @@ possibleInteger = .some(100)
   ```
 -->
 
-Use `where` right before the body
-to specify a list of requirements ---
-for example,
-to require the type to implement a protocol,
-to require two types to be the same,
-or to require a class to have a particular superclass.
+Използвайте `where` непосредствено преди тялото,
+за да укажете списък с изисквания ---
+например, за да изискате от типа да имплементира конкретен протокол,
+да изискате два типа да бъдат едни и същи
+или да изискате даден клас да има конкретен надклас.
 
 ```swift
 func anyCommonElements<T: Sequence, U: Sequence>(_ lhs: T, _ rhs: U) -> Bool
@@ -2442,9 +2417,9 @@ anyCommonElements([1, 2, 3], [3])
   ```
 -->
 
-> Experiment: Modify the `anyCommonElements(_:_:)` function
-> to make a function that returns an array
-> of the elements that any two sequences have in common.
+> Експериментирайте: Променете функцията `anyCommonElements(_:_:)` така, че
+> да направите функция, която връща масив
+> от елементите, които са общи за произволни две последователности.
 
 Writing `<T: Equatable>`
 is the same as writing `<T> ... where T: Equatable`.

@@ -1,40 +1,38 @@
-# Closures
+# Затваряния
 
-Group code that executes together, without creating a named function.
+Групирайте код, който се изпълнява заедно, без да създавате именувана функция.
 
-*Closures* are self-contained blocks of functionality
-that can be passed around and used in your code.
-Closures in Swift are similar
-to closures, anonymous functions, lambdas, and blocks
-in other programming languages.
+*Затварянията* (closures) представляват самостоятелни блокове функционалност,
+които могат да бъдат предавани от едно място на друго и използвани в кода, който пишете.
+Затварянията в Swift са подобни на затварянията, анонимните функции, ламбда функциите
+и блоковете в други езици за програмиране.
 
-Closures can capture and store references to any constants and variables
-from the context in which they're defined.
-This is known as *closing over* those constants and variables.
-Swift handles all of the memory management of capturing for you.
+Затварянията могат да прихващат и съхраняват референции към константи и променливи
+от контекста, в който са дефинирани.
+Това явление е известно като *затваряне върху* тези константи и променливи.
+При такова прихващане Swift се грижи за управлението на паметта вместо Вас.
 
-> Note: Don't worry if you aren't familiar with the concept of capturing.
-> It's explained in detail below in <doc:Closures#Capturing-Values>.
+> Забележка: Не се притеснявайте, ако понятието прихващане не Ви е познато.
+> То е обяснено подробно по-надолу в <doc:Closures#Capturing-Values>.
 
-Global and nested functions, as introduced in <doc:Functions>,
-are actually special cases of closures.
-Closures take one of three forms:
+Глобалните и вложените функции, представени в <doc:Functions>,
+всъщност представляват специални случаи на затваряния.
+Затварянията приемат една от следните три форми:
 
-- Global functions are closures that have a name
-  and don't capture any values.
-- Nested functions are closures that have a name
-  and can capture values from their enclosing function.
-- Closure expressions are unnamed closures written in a lightweight syntax
-  that can capture values from their surrounding context.
+- Глобалните функции са затваряния, които имат име и не прихващат стойности
+- Вложените функции са затваряния, които имат име и могат да прихващат стойности от
+  съдържащата ги функция
+- Изразите затваряния са неименувани затваряния, написани в олекотен синтаксис,
+  които могат да прихващат стойности от обкръжаващия ги контекст.
 
-Swift's closure expressions have a clean, clear style,
-with optimizations that encourage brief, clutter-free syntax in common scenarios.
-These optimizations include:
+Изразите затваряния на Swift имат чист, ясен стил,
+с оптимизации, които насърчават съкратен синтаксис, в който няма излишни претрупвания, в често срещаните сценарии.
+Тези оптимизации включват:
 
-- Inferring parameter and return value types from context
-- Implicit returns from single-expression closures
-- Shorthand argument names
-- Trailing closure syntax
+- Разпознаване на типовете на параметрите и типовете на връщаните стойности от контекста
+- Неявно връщане от затваряния, които представляват един-единствен израз
+- Съкратени имена на аргументи
+- Синтаксис за затваряне на последна позиция
 
 ## Closure Expressions
 

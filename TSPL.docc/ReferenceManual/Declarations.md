@@ -1,6 +1,6 @@
-# Declarations
+# Декларации
 
-Introduce types, operators, variables, and other names and constructs.
+Въведете типове, оператори, променливи и други имена и конструкти.
 
 A *declaration* introduces a new name or construct into your program.
 For example, you use declarations to introduce functions and methods,

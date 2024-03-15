@@ -1,6 +1,6 @@
-# Extensions
+# Разширения
 
-Add functionality to an existing type.
+Добавете функционалност към съществуващ тип.
 
 *Extensions* add new functionality to an existing
 class, structure, enumeration, or protocol type.
@@ -426,15 +426,15 @@ to perform a task that many number of times:
   ```
 -->
 
-### Mutating Instance Methods
+### Методи, променящи инстанцията (`mutating`)
 
-Instance methods added with an extension can also modify (or *mutate*) the instance itself.
-Structure and enumeration methods that modify `self` or its properties
-must mark the instance method as `mutating`,
-just like mutating methods from an original implementation.
+Методите на инстанция, добавени чрез разширение, също така могат да променят (*mutate*) самата инстанция.
+Методите на структури и изброявания, които променят конкретната инстанция (`self`) или нейните свойства,
+трябва да бъдат маркирани като `mutating` (променящи),
+също както променящите методи от оригиналната имплементация.
 
-The example below adds a new mutating method called `square` to Swift's `Int` type,
-which squares the original value:
+В примера по-долу към типа `Int` на Swift се добавя нов променящ метод с име `square`,
+който умножава на квадрат първоначалната стойност:
 
 ```swift
 extension Int {
@@ -463,17 +463,16 @@ someInt.square()
   ```
 -->
 
-## Subscripts
+## Достъп до елемент чрез индекс
 
-Extensions can add new subscripts to an existing type.
-This example adds an integer subscript to Swift's built-in `Int` type.
-This subscript `[n]` returns the decimal digit `n` places in
-from the right of the number:
+Разширенията могат да добавят възможност за достъп чрез индекс към съществуващ тип.
+В този пример към вградения тип `Int` на Swift се добавя достъп чрез целочислен индекс.
+Този индекс `[n]` връща десетичното число `n` места надясно от началото на числото:
 
 - `123456789[0]` returns `9`
 - `123456789[1]` returns `8`
 
-…and so on:
+…и т.н.:
 
 ```swift
 extension Int {
@@ -486,13 +485,13 @@ extension Int {
     }
 }
 746381295[0]
-// returns 5
+// връща 5
 746381295[1]
-// returns 9
+// връща 9
 746381295[2]
-// returns 2
+// връща 2
 746381295[8]
-// returns 7
+// връща 7
 ```
 
 <!--
@@ -538,13 +537,12 @@ extension Int {
   Darwin's pow() function is only for floating point.
 -->
 
-If the `Int` value doesn't have enough digits for the requested index,
-the subscript implementation returns `0`,
-as if the number had been padded with zeros to the left:
+Ако `Int` стойността няма достатъчно числа за заявения индекс,
+имплементацията връща `0`, така сякаш числото е допълнено с нули отляво:
 
 ```swift
 746381295[9]
-// returns 0, as if you had requested:
+// връща 0, така сякаш сте поискали:
 0746381295[9]
 ```
 
@@ -570,9 +568,9 @@ as if the number had been padded with zeros to the left:
   Tracking bug is <rdar://problem/35301593>
 -->
 
-## Nested Types
+## Вложени типове
 
-Extensions can add new nested types to existing classes, structures, and enumerations:
+Разширенията могат да добавят нови вложени типове към съществуващи класове, структури и изброявания:
 
 ```swift
 extension Int {
@@ -614,17 +612,15 @@ extension Int {
   ```
 -->
 
-This example adds a new nested enumeration to `Int`.
-This enumeration, called `Kind`,
-expresses the kind of number that a particular integer represents.
-Specifically, it expresses whether the number is
-negative, zero, or positive.
+В този пример към `Int` се добавя ново вложено изброяване.
+Това изброяване, наречено `Kind`,
+изразява вида число, което определена целочислена стойност представлява.
+Конкретно то изразява дали числото е отрицателно, нула или положително.
 
-This example also adds a new computed instance property to `Int`,
-called `kind`,
-which returns the appropriate `Kind` enumeration case for that integer.
+Освен това примерът добавя ново изчислено свойство на инстанция към `Int`,
+наречено `kind`, което връща съответния случай на изброяването `Kind` за това цяло число.
 
-The nested enumeration can now be used with any `Int` value:
+Вложеното изброяване вече може да бъде използвано с коя да е `Int` стойност:
 
 ```swift
 func printIntegerKinds(_ numbers: [Int]) {
@@ -671,20 +667,19 @@ printIntegerKinds([3, 19, -27, 0, -6, 0, 7])
   Workaround for rdar://26016325
 -->
 
-This function, `printIntegerKinds(_:)`,
-takes an input array of `Int` values and iterates over those values in turn.
-For each integer in the array,
-the function considers the `kind` computed property for that integer,
-and prints an appropriate description.
+Тази функция, `printIntegerKinds(_:)`,
+приема като вход масив от `Int` стойности и итерира през тях поред.
+За всяко цяло число в масива функцията взима предвид изчисленото свойство `kind` за тази целочислена стойност
+и извежда подходящо описание.
 
-> Note: `number.kind` is already known to be of type `Int.Kind`.
-> Because of this, all of the `Int.Kind` case values
-> can be written in shorthand form inside the `switch` statement,
-> such as `.negative` rather than `Int.Kind.negative`.
+> Забележка: Вече е известно, че `number.kind` е от тип `Int.Kind`.
+> Поради това всички стойности на случаи на `Int.Kind`
+> могат да бъдат записани в `switch` конструкцията в съкратена форма,
+> например `.negative` вместо `Int.Kind.negative`.
 
-> Beta Software:
+> Бета софтуер:
 >
-> This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.
+> Тази документация съдържа предварителна информация за API или технология, които са в процес на разработка. Информацията може да бъде променена, а софтуерът, имплементиран според тази документация, трябва да бъде тестван с окончателното издание на операционната система.
 >
 > Learn more about using [Apple's beta software](https://developer.apple.com/support/beta-software/).
 
