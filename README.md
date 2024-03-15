@@ -1,4 +1,6 @@
-# The Swift Programming Language
+# Езикът за програмиране Swift
+
+Това хранилище съдържа изходния код на *Езикът за програмиране Swift* в превод на български език.
 
 This repository contains the source for *The Swift Programming Language*
 (sometimes abbreviated as TSPL),
