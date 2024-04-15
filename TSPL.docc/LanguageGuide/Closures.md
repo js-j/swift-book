@@ -22,48 +22,48 @@
 - Глобалните функции са затваряния, които имат име и не прихващат стойности
 - Вложените функции са затваряния, които имат име и могат да прихващат стойности от
   съдържащата ги функция
-- Изразите затваряния са неименувани затваряния, написани в олекотен синтаксис,
+- Затварянията изрази са неименувани затваряния, написани в олекотен синтаксис,
   които могат да прихващат стойности от обкръжаващия ги контекст.
 
 Изразите затваряния на Swift имат чист, ясен стил,
-с оптимизации, които насърчават съкратен синтаксис, в който няма излишни претрупвания, в често срещаните сценарии.
+с оптимизации, насърчаващи използването в често срещаните сценарии на съкратен синтаксис, в който няма излишни претрупвания.
 Тези оптимизации включват:
 
 - Разпознаване на типовете на параметрите и типовете на връщаните стойности от контекста
 - Неявно връщане от затваряния, които представляват един-единствен израз
 - Съкратени имена на аргументи
-- Синтаксис за затваряне на последна позиция
+- Синтаксис за затваряне в крайна позиция
 
-## Closure Expressions
+## Затваряния изрази
 
-Nested functions, as introduced in <doc:Functions#Nested-Functions>,
-are a convenient means of naming and defining self-contained blocks of code
-as part of a larger function.
-However, it's sometimes useful to write shorter versions of function-like constructs
-without a full declaration and name.
-This is particularly true when you work with functions or methods that take functions
-as one or more of their arguments.
+Вложените функции, представени в <doc:Functions#Nested-Functions>,
+са удобно средство за именуване и дефиниране на самостоятелни блокове код като част от
+по-голяма функция.
+Понякога обаче е полезно да се пишат по-кратки версии на конструкти, подобни на функции, 
+без пълна декларация и име.
+Това важи с особена сила, когато работите с функции или методи, които приемат функции
+като един или повече от своите аргументи.
 
-*Closure expressions* are a way to write inline closures in a brief, focused syntax.
-Closure expressions provide several syntax optimizations
-for writing closures in a shortened form without loss of clarity or intent.
-The closure expression examples below illustrate these optimizations
-by refining a single example of the `sorted(by:)` method over several iterations,
-each of which expresses the same functionality in a more succinct way.
+*Затварянията изрази* са начин да се пишат затваряния наред с друг код в
+един съкратен и целенасочен синтаксис.
+Затварянията изрази предоставят няколко оптимизации на синтаксиса
+за писане на затваряния в съкратена форма без загуба на яснота или предназначение.
+Примерите на затваряния изрази по-долу илюстрират тези оптимизации,
+като усъвършенстват конкретен пример на метода `sorted(by:)` през няколко итерации,
+всяка от която изразява една и съща функционалност по по-кратък начин.
 
-### The Sorted Method
+### Методът `sorted`
 
-Swift's standard library provides a method called `sorted(by:)`,
-which sorts an array of values of a known type,
-based on the output of a sorting closure that you provide.
-Once it completes the sorting process,
-the `sorted(by:)` method returns a new array of the same type and size as the old one,
-with its elements in the correct sorted order.
-The original array isn't modified by the `sorted(by:)` method.
+Стандартната библиотека на Swift предоставя метод с име `sorted(by:)`,
+който сортира масив от стойности от известен тип,
+на базата на върнатата стойност от предоставено от Вас сортиращо затваряне.
+След като завърши процеса на сортирането, методът `sorted(by:)` връща нов масив от същия тип и размер
+като стария, в който елементите са в правилния подреден ред.
+Методът `sorted(by:)` не променя изходния масив.
 
-The closure expression examples below use the `sorted(by:)` method
-to sort an array of `String` values in reverse alphabetical order.
-Here's the initial array to be sorted:
+Примерите на затваряния изрази по-долу сортират масив от `String` стойности в 
+обратен азбучен ред чрез метода `sorted(by:)`.
+Началният масив, който ще бъде сортиран, е:
 
 ```swift
 let names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
@@ -77,26 +77,25 @@ let names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
   ```
 -->
 
-The `sorted(by:)` method accepts a closure that takes two arguments
-of the same type as the array's contents,
-and returns a `Bool` value to say whether the first value should appear
-before or after the second value once the values are sorted.
-The sorting closure needs to return `true`
-if the first value should appear *before* the second value,
-and `false` otherwise.
+Методът `sorted(by:)` приема затваряне с два аргумента
+от същия тип като съдържанието на масива и връщащо `Bool` стойност,
+която означава дали първата стойност трябва да бъде преди или след
+втората след сортирането.
+Сортиращото затваряне трябва да връща `true`, ако мястото на първата стойност
+е *преди* втората, и `false` в противен случай.
 
-This example is sorting an array of `String` values,
-and so the sorting closure needs to be a function of type `(String, String) -> Bool`.
+Този пример е за сортиране на масив от `String` стойности,
+така че сортиращото затваряне трябва да е функция от тип `(String, String) -> Bool`.
 
-One way to provide the sorting closure is to write a normal function of the correct type,
-and to pass it in as an argument to the `sorted(by:)` method:
+Един начин да се осигури сортиращо затваряне е да се напише нормална функция от правилния тип,
+която да се предаде като аргумент на метода `sorted(by:)`:
 
 ```swift
 func backward(_ s1: String, _ s2: String) -> Bool {
     return s1 > s2
 }
 var reversedNames = names.sorted(by: backward)
-// reversedNames is equal to ["Ewa", "Daniella", "Chris", "Barry", "Alex"]
+// reversedNames е равно на ["Ewa", "Daniella", "Chris", "Barry", "Alex"]
 ```
 
 <!--
@@ -112,39 +111,38 @@ var reversedNames = names.sorted(by: backward)
   ```
 -->
 
-If the first string (`s1`) is greater than the second string (`s2`),
-the `backward(_:_:)` function will return `true`,
-indicating that `s1` should appear before `s2` in the sorted array.
-For characters in strings,
-“greater than” means “appears later in the alphabet than”.
-This means that the letter `"B"` is “greater than” the letter `"A"`,
-and the string `"Tom"` is greater than the string `"Tim"`.
-This gives a reverse alphabetical sort,
-with `"Barry"` being placed before `"Alex"`, and so on.
+Ако първият низ (`s1`) е по-голям от втория (`s2`),
+функцията `backward(_:_:)` ще върне `true`,
+указвайки, че `s1` трябва да е преди `s2` в сортирания масив.
+За символи от низ "по-голямо от" означава "по-нататък в азбуката в сравнение с".
+Това означава, че буквата `"B"` е “по-голяма от” буквата `"A"`,
+както и че низът `"Tom"` е по-голям от низа `"Tim"`.
+Това ни дава сортиране в обратен азбучен ред, като
+`"Barry"` е преди `"Alex"`, и т.н.
 
-However, this is a rather long-winded way to write
-what is essentially a single-expression function (`a > b`).
-In this example, it would be preferable to write the sorting closure inline,
-using closure expression syntax.
+Забележете обаче, че това е един излишно подробен начин да се напише това, което
+по същесто представлява функция от един израз (`a > b`).
+В този пример би било за предпочитане сортиращото затваряне да се напише наред с останалия код
+посредством синтаксиса за затваряне израз.
 
-### Closure Expression Syntax
+### Синтаксис за затваряне израз
 
-Closure expression syntax has the following general form:
+Синтаксисът за затваряне израз има следната обща форма:
 
 ```swift
-{ (<#parameters#>) -> <#return type#> in
-   <#statements#>
+{ (параметри) -> тип на връщаната стойност in
+   конструкции
 }
 ```
+*Параметри* в синтаксиса за затваряне израз
+могат да бъдат in-out параметри, но не могат да имат
+подразбираща се стойност.
+Можете да използвате вариативни параметри, ако им дадете име.
+Също така като типове данни за параметри и тип на връщаната стойност
+могат да се използват кортежи.
 
-The *parameters* in closure expression syntax
-can be in-out parameters,
-but they can't have a default value.
-Variadic parameters can be used if you name the variadic parameter.
-Tuples can also be used as parameter types and return types.
-
-The example below shows a closure expression version of the `backward(_:_:)` function
-from above:
+Следващият пример показва версия на функцията `backward(_:_:)` от по-горе,
+написана като израз на затваряне:
 
 ```swift
 reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
@@ -163,20 +161,19 @@ reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
   ```
 -->
 
-Note that the declaration of parameters and return type for this inline closure
-is identical to the declaration from the `backward(_:_:)` function.
-In both cases, it's written as `(s1: String, s2: String) -> Bool`.
-However, for the inline closure expression,
-the parameters and return type are written *inside* the curly braces,
-not outside of them.
+Забележете, че декларацията на параметрите и типа на връщаната стойност за това
+затваряне, което е написано наред с другия код, е идентична с декларацията от функцията `backward(_:_:)`.
+И в двата случая тя се пише така: `(s1: String, s2: String) -> Bool`.
+При затварянето израз, написано наред с другия код обаче,
+параметрите и типът на върнатата стойност са написани *вътре във* фигурните скоби,
+не извън тях.
 
-The start of the closure's body is introduced by the `in` keyword.
-This keyword indicates that
-the definition of the closure's parameters and return type has finished,
-and the body of the closure is about to begin.
+Началото на тялото на затварянето е ключовата дума `in`.
+Тази ключова дума показва, че дефиницията на параметрите и типа на върнатата стойност на затварянето
+е завършила, а тялото на затварянето започва.
 
-Because the body of the closure is so short,
-it can even be written on a single line:
+Понеже тялото на затварянето е толкова кратко,
+то дори може да бъде написано на един-единствен ред:
 
 ```swift
 reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in return s1 > s2 } )
@@ -191,22 +188,21 @@ reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in return s1
   ```
 -->
 
-This illustrates that the overall call to the `sorted(by:)` method has remained the same.
-A pair of parentheses still wrap the entire argument for the method.
-However, that argument is now an inline closure.
+Това илюстрира, че въобще извикването на метода `sorted(by:)` е останало едно и също.
+Двойка фигурни скоби пак огражда целия аргумент на метода.
+Сега обаче този аргумент е затваряне, написано наред с другия код.
 
-### Inferring Type From Context
+### Разпознаване на типа от контекста
 
-Because the sorting closure is passed as an argument to a method,
-Swift can infer the types of its parameters
-and the type of the value it returns.
-The `sorted(by:)` method is being called on an array of strings,
-so its argument must be a function of type `(String, String) -> Bool`.
-This means that the `(String, String)` and `Bool` types don't need to be written
-as part of the closure expression's definition.
-Because all of the types can be inferred,
-the return arrow (`->`) and the parentheses around the names of the parameters
-can also be omitted:
+Понеже сортиращото затваряне се предава като аргумент на метод,
+Swift може да разбере какви са типовете на неговите параметри, както и
+типа на стойността, която то връща.
+Методът `sorted(by:)` се извиква върху масив от низове,
+така че неговият аргумент трябва да бъде функция от типа `(String, String) -> Bool`.
+Това означава, че не е необходимо типовете `(String, String)` и `Bool` да бъдат изписвани
+като част от дефиницията на израза на затварянето.
+Тъй като компилаторът може да разбере какви са всичките типове, стрелката за връщане (`->`) и скобите около
+иената на параметрите също могат да бъдат изпуснати:
 
 ```swift
 reversedNames = names.sorted(by: { s1, s2 in return s1 > s2 } )
@@ -221,24 +217,22 @@ reversedNames = names.sorted(by: { s1, s2 in return s1 > s2 } )
   ```
 -->
 
-It's always possible to infer the parameter types and return type
-when passing a closure to a function or method as an inline closure expression.
-As a result, you never need to write an inline closure in its fullest form
-when the closure is used as a function or method argument.
+Винаги е възможно да се разпознаят типовете на параметрите и типът на връщаната стойност,
+когато едно затваряне, записано като израз наред с другия код, се предава на функция или метод.
+В резултат на това никога няма да е задължително да изписвате такова затваряне, предавано като аргумент,
+в пълната му форма.
 
-Nonetheless, you can still make the types explicit if you wish,
-and doing so is encouraged if it avoids ambiguity for readers of your code.
-In the case of the `sorted(by:)` method,
-the purpose of the closure is clear from the fact that sorting is taking place,
-and it's safe for a reader to assume that
-the closure is likely to be working with `String` values,
-because it's assisting with the sorting of an array of strings.
+И все пак бихте могли, ако желаете, да направите типовете изрични, и дори това се насърчава, ако така се 
+избягва двусмислието за читателите на Вашия код.
+В случая с метода `sorted(by:)` предназначението на затварянето е ясно от факта, че се извършва сортиране,
+и е безопасно този, който чете кода, да допусне, че затварянето вероятно работи със `String` стойности,
+Тъй като то изпълнява помощна функция при сортирането на масив от низове.
 
-### Implicit Returns from Single-Expression Closures
+### Неявно връщане на стойност от едноизразни затваряния
 
-Single-expression closures can implicitly return the result of their single expression
-by omitting the `return` keyword from their declaration,
-as in this version of the previous example:
+Затварянията, които се състоят от един-единствен израз, могат неявно да връщат неговия резултат, като
+в тяхната декларация се пропуска ключовата дума `return` --- така,
+както е направено в следната версия на предишния пример:
 
 ```swift
 reversedNames = names.sorted(by: { s1, s2 in s1 > s2 } )
@@ -253,26 +247,24 @@ reversedNames = names.sorted(by: { s1, s2 in s1 > s2 } )
   ```
 -->
 
-Here, the function type of the `sorted(by:)` method's argument
-makes it clear that a `Bool` value must be returned by the closure.
-Because the closure's body contains a single expression (`s1 > s2`)
-that returns a `Bool` value,
-there's no ambiguity, and the `return` keyword can be omitted.
+Тук типът функция на аргумента на метода sorted(by:)` ясно определя, че
+затварянето трябва да върне `Bool` стойност.
+Тъй като тялото на затварянето съдържа единствен израз (`s1 > s2`),
+който връща `Bool` стойност, няма двусмислие и ключовата дума `return`
+може да бъде изпусната.
 
-### Shorthand Argument Names
+### Съкратени имена на аргументи
 
-Swift automatically provides shorthand argument names to inline closures,
-which can be used to refer to the values of the closure's arguments
-by the names `$0`, `$1`, `$2`, and so on.
+Swift автоматично предоставя съкратени имена на аргументите на вградените затваряния.
+Така стойностите на аргументите на затварянето могат да бъдат реферирани чрез имената `$0`, `$1`, `$2`, и т.н.
 
-If you use these shorthand argument names within your closure expression,
-you can omit the closure's argument list from its definition.
-The type of the shorthand argument names
-is inferred from the expected function type,
-and the highest numbered shorthand argument you use
-determines the number of arguments that the closure takes.
-The `in` keyword can also be omitted,
-because the closure expression is made up entirely of its body:
+Ако използвате тези съкратени имена на аргументи във Вашия израз на затваряне,
+можете да пропуснете списъка от аргументи на затварянето от неговата дефиниция.
+Типът на аргументите с кратки имена се извлича от очаквания тип функция,
+като съкратеният аргумент с най-висок номер определя броя на аргументите, които
+затварянето приема. 
+Ключовата дума `in` също може да бъде пропусната, тъй като изразът на затварянето
+е съставен изцяло от своето тяло:
 
 ```swift
 reversedNames = names.sorted(by: { $0 > $1 } )
@@ -287,12 +279,11 @@ reversedNames = names.sorted(by: { $0 > $1 } )
   ```
 -->
 
-Here, `$0` and `$1` refer to the closure's first and second `String` arguments.
-Because `$1` is the shorthand argument with highest number,
-the closure is understood to take two arguments.
-Because the `sorted(by:)` function here expects a closure
-whose arguments are both strings,
-the shorthand arguments `$0` and `$1` are both of type `String`.
+Тук `$0` и `$1` се отнасят до първия и втория `String` аргументи на затварянето.
+Тъй като `$1` е съкратеният аргумент с най-висок номер,
+се приема, че затварянето приема два аргумента.
+А вследствие на това, че функцията `sorted(by:)` тук очаква затваряне, всеки от аргументите
+на което е низ, и двата съкратени аргумента `$0` и `$1` са от тип `String`.
 
 <!--
   - test: `closure-syntax-arity-inference`
@@ -308,16 +299,15 @@ the shorthand arguments `$0` and `$1` are both of type `String`.
   ```
 -->
 
-### Operator Methods
+### Методи за оператори
 
-There's actually an even *shorter* way to write the closure expression above.
-Swift's `String` type defines its string-specific implementation of
-the greater-than operator (`>`)
-as a method that has two parameters of type `String`,
-and returns a value of type `Bool`.
-This exactly matches the method type needed by the `sorted(by:)` method.
-Therefore, you can simply pass in the greater-than operator,
-and Swift will infer that you want to use its string-specific implementation:
+Всъщност има един още *по-кратък* начин да се запише изразът затваряне от примера по-горе.
+Типът `String` на Swift дефинира своя собствена имплементация на оператора по-голямо (`>`), специфична
+за низове, като метод, имащ два параметъра от тип `String`,
+който връща стойност от тип `Bool`.
+Това съвпада точно с типа метод, необходим на метода `sorted(by:)`.
+Следователно може просто да предадете като аргумент оператора по-голямо и
+Swift ще разбере, че искате да изполозвате тази негова имплементация, която е специфична за низове:
 
 ```swift
 reversedNames = names.sorted(by: >)
@@ -332,9 +322,18 @@ reversedNames = names.sorted(by: >)
   ```
 -->
 
-For more about operator methods, see <doc:AdvancedOperators#Operator-Methods>.
+Повече по отношение на методите за оператори ще намерите в <doc:AdvancedOperators#Operator-Methods>.
 
-## Trailing Closures
+## Затваряния в крайна позиция
+
+Ако Ви се налага да предадете израз на затваряне към дадена функция като нейн последен аргумент
+и този израз е дълъг, би било полезно да го запишете вместо това като *затваряне в крайна позиция*.
+Затваряне в крайна позиция се пише след скобите на извикването на функцията, въпреки това, че затварянето
+си остава аргумент на функцията.
+Когато използвате синтаксиса за затваряне в крайна позиция, не трябва да пишете етикета на аргумента
+за първото затваряне като част от извикването на функцията.
+Едно извикване на функция може да включва повече от едно затваряне в крайна позиция;
+първите няколко примера по-долу обаче използват единствено затваряне.
 
 If you need to pass a closure expression to a function as the function's final argument
 and the closure expression is long,

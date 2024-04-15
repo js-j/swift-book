@@ -1,23 +1,22 @@
-# Generics
+# Обобщения (обобщени типове и методи)
 
-Write code that works for multiple types and specify requirements for those types.
+Пишете код, който работи при различни типове и задавайте изисквания за тези типове.
 
-*Generic code* enables you to write flexible, reusable functions and types
-that can work with any type, subject to requirements that you define.
-You can write code that avoids duplication
-and expresses its intent in a clear, abstracted manner.
+*Обобщеният код* дава възможност да пишете гъвкави, преизползваеми функции и типове, които
+могат да работят с всеки тип, според изисквания, които Вие дефинирате.
+Можете да пишете код, който избягва повторението и изразява своето намерение по един ясен и абстрактен начин.
 
-Generics are one of the most powerful features of Swift,
-and much of the Swift standard library is built with generic code.
-In fact, you've been using generics throughout the *Language Guide*,
-even if you didn't realize it.
-For example, Swift's `Array` and `Dictionary` types
-are both generic collections.
-You can create an array that holds `Int` values,
-or an array that holds `String` values,
-or indeed an array for any other type that can be created in Swift.
-Similarly, you can create a dictionary to store values of any specified type,
-and there are no limitations on what that type can be.
+Обобщенията са една от най-мощните възможности на Swift. Голяма част от стандартната библиотека на Swift
+е изградена с обощен код.
+Всъщност Вие самите използвахте обобщения в рамките на *Езиковото ръководство*,<!--- !?REF --->,
+дори и да не сте разбрали това.
+Например и двата типа `Array` и `Dictionary` на Swift
+са обобщени колекции.
+Можете да създадете масив, който съхранява `Int` стойности,
+или такъв, който съхранява `String` стойности,
+или въобще масив за кой да е друг тип, който има в Swift.
+В този ред на мисли бихте могли да къздадете речник, в който да съхранявате стойности от кой да е
+определен тип, като няма ограничения какъв да бъде този тип.
 
 ## The Problem That Generics Solve
 
