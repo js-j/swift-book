@@ -612,25 +612,25 @@ loadPicture(from: someServer) { picture in
 
 ## Прихващане на стойности
 
-A closure can *capture* constants and variables
-from the surrounding context in which it's defined.
-The closure can then refer to and modify
-the values of those constants and variables from within its body,
-even if the original scope that defined the constants and variables no longer exists.
+Едно затваряне може да *прихваща* константи и промениливи
+от обграждащия контекст, в който то е дефинирано.
+След това затварянето може да указва към и променя
+стойностите на тези константи и променливи в рамките на своето тяло,
+дори ако оригиналният обхват, който е дефинирал константите и променливите, вече не съществува.
 
-In Swift, the simplest form of a closure that can capture values is a nested function,
-written within the body of another function.
-A nested function can capture any of its outer function's arguments
-and can also capture any constants and variables defined within the outer function.
+В Swift най-простата форма на затваряне, което може да прихваща стойности, е вложена функция,
+написана вътре в тялото на друга функция.
+Една вложена функция може да прихваща всеки от аргументите на външната функция,
+както и всяка от константите и променливите, дефинирани във външната функция.
 
-Here's an example of a function called `makeIncrementer`,
-which contains a nested function called `incrementer`.
-The nested `incrementer()` function captures two values,
-`runningTotal` and `amount`,
-from its surrounding context.
-After capturing these values,
-`incrementer` is returned by `makeIncrementer` as a closure
-that increments `runningTotal` by `amount` each time it's called.
+Ето един пример на функция, наречена `makeIncrementer`,
+която съдържа вложена функция, наречена `incrementer`.
+Вложената функция `incrementer()` прихваща две стойности,
+`runningTotal` и `amount`,
+от окръжаващия я контекст.
+След прихащането на тези стойности
+`incrementer` бива върната от `makeIncrementer` като затваряне,
+което инкрементира `runningTotal` с `amount` при всяко свое извикване.
 
 ```swift
 func makeIncrementer(forIncrement amount: Int) -> () -> Int {
@@ -658,28 +658,27 @@ func makeIncrementer(forIncrement amount: Int) -> () -> Int {
   ```
 -->
 
-The return type of `makeIncrementer` is `() -> Int`.
-This means that it returns a *function*, rather than a simple value.
-The function it returns has no parameters,
-and returns an `Int` value each time it's called.
-To learn how functions can return other functions,
-see <doc:Functions#Function-Types-as-Return-Types>.
+Типът, който `makeIncrementer` връща, е `() -> Int`.
+Това означава, че тя връща *функция* вместо проста стойност.
+Тази върната функция няма параметри и връща `Int` стойност при всяко свое извикване.
+За да научите как функциите могат да връщат други функции, вижте
+<doc:Functions#Function-Types-as-Return-Types>.
 
-The `makeIncrementer(forIncrement:)` function defines an integer variable called `runningTotal`,
-to store the current running total of the incrementer that will be returned.
-This variable is initialized with a value of `0`.
+Функцията `makeIncrementer(forIncrement:)` дефинира целочислена променлива, наречена `runningTotal`,
+за да съхрани текущо изчислената обща стойност на инкрементора, която ще бъде върната.
+Тази променлива се инициализира със стойност `0`.
 
-The `makeIncrementer(forIncrement:)` function has a single `Int` parameter
-with an argument label of `forIncrement`, and a parameter name of `amount`.
-The argument value passed to this parameter specifies
-how much `runningTotal` should be incremented by
-each time the returned incrementer function is called.
-The `makeIncrementer` function defines a nested function called `incrementer`,
-which performs the actual incrementing.
-This function simply adds `amount` to `runningTotal`, and returns the result.
+Функцията `makeIncrementer(forIncrement:)` има единствен параметър от тип `Int`
+с аргументен етикет `forIncrement` и име на параметъра `amount`.
+Аргументата стойност, предадена на този параметър, определя
+с колко ще се инкрементира `runningTotal`
+при всяко извикване на инкрементиращата функция.
+Функцията `makeIncrementer` дефинира вложена функция, наречена `incrementer`,
+която извършва същинското инкрементиране.
+Тази функция просто добавя `amount` към `runningTotal` и връща резултата.
 
-When considered in isolation,
-the nested `incrementer()` function might seem unusual:
+Използвана изолирано,
+вложената функция `incrementer()` може да изглежда необичайно:
 
 ```swift
 func incrementer() -> Int {
@@ -700,6 +699,8 @@ func incrementer() -> Int {
      }
   ```
 -->
+
+??????????s
 
 The `incrementer()` function doesn't have any parameters,
 and yet it refers to `runningTotal` and `amount` from within its function body.
