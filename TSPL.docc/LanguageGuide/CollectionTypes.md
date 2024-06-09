@@ -10,15 +10,14 @@ Swift осигурява три основни типа за съхранени�
 
 ![](CollectionTypes_intro)
 
-Arrays, sets, and dictionaries in Swift are always clear about
-the types of values and keys that they can store.
-This means that you can't insert a value of the wrong type
-into a collection by mistake.
-It also means you can be confident about the type of values
-you will retrieve from a collection.
+При масивите, множествата и речниците в Swift винаги има яснота относно
+типовете на стойностите и ключовете, които те могат да съхраняват.
+Това означава, че в една колекция не може по погрешка да се вмъкне
+стойност от погрешен тип. Също така можете да сте уверени за типовете стойности,
+които ще извличате от колекциите.
 
-> Note: Swift's array, set, and dictionary types are implemented as *generic collections*.
-> For more about generic types and collections, see <doc:Generics>.
+> Забележка: Типовете масив, множество и речник на Swift са реализирани като *обобщение колекции*.
+> Повече информация относно обобщените типове и колекции ще откриете в <doc:Generics>.
 
 <!--
   TODO: should I mention the Collection protocol, to which both of these conform?
@@ -32,28 +31,26 @@ you will retrieve from a collection.
   TODO: discuss collection equality
 -->
 
-## Mutability of Collections
+## Изменяемост на колекциите
 
-If you create an array, a set, or a dictionary, and assign it to a variable,
-the collection that's created will be *mutable*.
-This means that you can change (or *mutate*) the collection after it's created
-by adding, removing, or changing items in the collection.
-If you assign an array, a set, or a dictionary to a constant,
-that collection is *immutable*,
-and its size and contents can't be changed.
+Ако създадете масив, множество или речник и го присвоите на променлива, създадената колекция
+ще бъде *изменяема*. Това означава, че можете да изменяте (англ. *mutate*) колекцията, след като
+тя е създадена, чрез добавяне, премахване или променяне на елементите в колекцията.
+Ако присвоите масив, множество или речник на константа, тази колекция е *неизменяема* (*immutable*)
+и нейният размер и съдържание не могат да бъдат променяни.
 
-> Note: It's good practice to create immutable collections
-> in all cases where the collection doesn't need to change.
-> Doing so makes it easier for you to reason about your code
-> and enables the Swift compiler to optimize the performance of
-> the collections you create.
+> Забележка: Добра практика е да създавате неизменяеми колекции
+> във всички случаи, при които не е необходима промяна на колекцията.
+> Така по-лесно ще можете да вадите заключения относно вашия код
+> и дава възможност на компилатора на Swift да оптимизира бързодействието
+> при достъп до колекциите, които създавате.
 
-## Arrays
+## Масиви
 
-An *array* stores values of the same type in an ordered list.
-The same value can appear in an array multiple times at different positions.
+*Масивът* съхранява стойности от един и същи тип в подреден списък.
+Една и съща стойност може да присъства в масива повече от веднъж на различни позиции.
 
-> Note: Swift's `Array` type is bridged to Foundation's `NSArray` class.
+> Note: Типът `Array` на Swift е присъединен към класа `NSArray` от Foundation.
 >
 > For more information about using `Array` with Foundation and Cocoa,
 > see [Bridging Between Array and NSArray](https://developer.apple.com/documentation/swift/array#2846730).
