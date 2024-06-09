@@ -1,4 +1,4 @@
-# Collection Types
+# Типове за колекции	
 
 Organize data using arrays, sets, and dictionaries.
 
