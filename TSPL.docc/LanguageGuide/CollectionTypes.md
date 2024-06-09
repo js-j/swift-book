@@ -1,13 +1,12 @@
 # Типове за колекции	
 
-Organize data using arrays, sets, and dictionaries.
+Организирайте данните посредством масиви, множества и речници.
 
-Swift provides three primary *collection types*,
-known as arrays, sets, and dictionaries,
-for storing collections of values.
-Arrays are ordered collections of values.
-Sets are unordered collections of unique values.
-Dictionaries are unordered collections of key-value associations.
+Swift осигурява три основни типа за съхранение на колекции от стойности -
+масиви, множества и речници.
+Масивите представляват подредени колекции от стойности.
+Множествата са неподредени колекции от уникални стойности.
+Речниците представляват неподредени колекции от асоциации ключ-стойност.
 
 ![](CollectionTypes_intro)
 
