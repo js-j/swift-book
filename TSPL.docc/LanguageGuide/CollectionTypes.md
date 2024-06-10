@@ -50,29 +50,27 @@ Swift осигурява три основни типа за съхранени�
 *Масивът* съхранява стойности от един и същи тип в подреден списък.
 Една и съща стойност може да присъства в масива повече от веднъж на различни позиции.
 
-> Note: Типът `Array` на Swift е присъединен към класа `NSArray` от Foundation.
+> Забележка: Типът `Array` на Swift е присъединен към класа `NSArray` от Foundation.
 >
-> For more information about using `Array` with Foundation and Cocoa,
-> see [Bridging Between Array and NSArray](https://developer.apple.com/documentation/swift/array#2846730).
+> Повече информация относно употребата на `Array` с Foundation и Cocoa
+> ще откриете в [Bridging Between Array and NSArray](https://developer.apple.com/documentation/swift/array#2846730).
 
-### Array Type Shorthand Syntax
+### Съкратен синтаксис на типа за масив
 
-The type of a Swift array is written in full as `Array<Element>`,
-where `Element` is the type of values the array is allowed to store.
-You can also write the type of an array in shorthand form as `[Element]`.
-Although the two forms are functionally identical,
-the shorthand form is preferred
-and is used throughout this guide when referring to the type of an array.
+Типът на един масив в Swift се изписва в пълна форма като `Array<Element>`,
+където `Element` е типът на стойностите, за които е позволено да бъдат съхранявани в масива.
+Можете да изпишете типа на масива в съкратена форма и като `[Element]`.
+Макар и двете форми да са функционално идентични,
+съкратената се предпочита и в това ръководство се използва винаги, когато се указва типът на даден масив.
 
-### Creating an Empty Array
+### Създаване на празен масив
 
-You can create an empty array of a certain type
-using initializer syntax:
+Създаването на празен масив от определен тип става с помощта на синтаксис на инициализатор:
 
 ```swift
 var someInts: [Int] = []
-print("someInts is of type [Int] with \(someInts.count) items.")
-// Prints "someInts is of type [Int] with 0 items."
+print("someInts е от тип [Int] с \(someInts.count) елемента.")
+// Извежда "someInts е от тип [Int] с 0 елемента."
 ```
 
 <!--
@@ -85,20 +83,20 @@ print("someInts is of type [Int] with \(someInts.count) items.")
   ```
 -->
 
-Note that the type of the `someInts` variable is inferred to be `[Int]`
-from the type of the initializer.
+Обърнете внимание, че типът на променливата `someInts` се разпознава от компилатора като `[Int]`
+от типа на инициализатора.
 
-Alternatively, if the context already provides type information,
-such as a function argument or an already typed variable or constant,
-you can create an empty array with an empty array literal,
-which is written as `[]`
-(an empty pair of square brackets):
+Като алтернатива, ако контекстът вече предоставя информация за типа,
+например като аргумент на функция, или пък променлива или константа с вече определен тип,
+можете да създадете празен масив посредством литерал за празен масив,
+който се изписва като `[]`
+(празна двойка квадратни скоби):
 
 ```swift
 someInts.append(3)
-// someInts now contains 1 value of type Int
+// Тук someInts съдържа една стойност от тип Int
 someInts = []
-// someInts is now an empty array, but is still of type [Int]
+// Тук someInts е празен масив, но все още е от тип [Int]
 ```
 
 <!--
@@ -113,18 +111,17 @@ someInts = []
   ```
 -->
 
-### Creating an Array with a Default Value
+### Създаване на масив с подразбираща се стойност
 
-Swift's `Array` type also provides
-an initializer for creating an array of a certain size
-with all of its values set to the same default value.
-You pass this initializer
-a default value of the appropriate type (called `repeating`):
-and the number of times that value is repeated in the new array (called `count`):
+Типът `Array` на Swift също така осигурява
+инициализатор за създаване на масив с определен размер,
+в който всички стойности са установени на една и съща подразбираща се стойност.
+На инициализатора се предава подразбираща се стойност от съответния тип (наречена `repeating`)
+и броя пъти тази стойност да бъде повторена в новия масив (наречен `count`):
 
 ```swift
 var threeDoubles = Array(repeating: 0.0, count: 3)
-// threeDoubles is of type [Double], and equals [0.0, 0.0, 0.0]
+// threeDoubles е от тип [Double] и е равно на [0.0, 0.0, 0.0]
 ```
 
 <!--
@@ -137,7 +134,7 @@ var threeDoubles = Array(repeating: 0.0, count: 3)
   ```
 -->
 
-### Creating an Array by Adding Two Arrays Together
+### Създаване на масив чрез събиране на два други масива
 
 You can create a new array by adding together two existing arrays with compatible types
 with the addition operator (`+`).
