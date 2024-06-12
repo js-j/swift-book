@@ -175,22 +175,22 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
   Likewise I'm holding off writing about it until NewArray lands.
 -->
 
-### Creating an Array with an Array Literal
+### Създаване на масив чрез литерал
 
-You can also initialize an array with an *array literal*,
-which is a shorthand way to write one or more values as an array collection.
-An array literal is written as a list of values, separated by commas,
-surrounded by a pair of square brackets:
+Масивите могат да бъдат инициализирани и с *литерали*, които представляват
+съкратен начин да пишете една или повече стойности като колекция масив.
+Литерал за масив се изписва като списък от стойности, разделени със запетаи,
+оградени от двойка квадратни скоби:
 
 ```swift
-[<#value 1#>, <#value 2#>, <#value 3#>]
+[стойност 1, стойност 2, стойност 3]
 ```
 
-The example below creates an array called `shoppingList` to store `String` values:
+В примера по-долу се създава масив, наречен `shoppingList`, който ще съхранява стойности от тип `String`:
 
 ```swift
 var shoppingList: [String] = ["Eggs", "Milk"]
-// shoppingList has been initialized with two initial items
+// shoppingList е инициализиран с две първоначални стойности
 ```
 
 <!--
@@ -202,12 +202,12 @@ var shoppingList: [String] = ["Eggs", "Milk"]
   ```
 -->
 
-The `shoppingList` variable is declared as
-“an array of string values”, written as `[String]`.
-Because this particular array has specified a value type of `String`,
-it's allowed to store `String` values only.
-Here, the `shoppingList` array is initialized with two `String` values
-(`"Eggs"` and `"Milk"`), written within an array literal.
+Променливата `shoppingList` е декларирана като
+“масив от низови стойности”, изписано като `[String]`.
+Тъй за този конкретен масив е зададен тип `String`, е
+позволено да се съхраняват само стойности от тип `String`.
+Тук масивът `shoppingList` се инициализира с две `String` стойности
+(`"Eggs"` и `"Milk"`), изписани в литерала.
 
 > Note: The `shoppingList` array is declared as a variable (with the `var` introducer)
 > and not a constant (with the `let` introducer)
