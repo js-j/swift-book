@@ -209,15 +209,15 @@ var shoppingList: [String] = ["Eggs", "Milk"]
 Тук масивът `shoppingList` се инициализира с две `String` стойности
 (`"Eggs"` и `"Milk"`), изписани в литерала.
 
-> Note: The `shoppingList` array is declared as a variable (with the `var` introducer)
-> and not a constant (with the `let` introducer)
-> because more items are added to the shopping list in the examples below.
+> Забележка: Масивът `shoppingList` е деклариран като променлива (чрез декларациятя `var`),
+> а не константа (посредством `let`), тъй като в примерите по-долу
+> се добавят повече елементи към списъка за пазаруване.
 
-In this case, the array literal contains two `String` values and nothing else.
-This matches the type of the `shoppingList` variable's declaration
-(an array that can only contain `String` values),
-and so the assignment of the array literal is permitted
-as a way to initialize `shoppingList` with two initial items.
+В този случай литералът за масив съдържа две стойности от тип `String` и нищо повече.
+Това съответства на типа на декларацията на променливата `shoppingList`
+(масив, който може да съдържа единствено `String` стойности),
+така че присвояването на литерал за масив е
+позволено като начин да се инициализира `shoppingList` с два първоначални елемента.
 
 Thanks to Swift's type inference,
 you don't have to write the type of the array
