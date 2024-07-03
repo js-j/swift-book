@@ -1,73 +1,69 @@
-# Automatic Reference Counting
+# Автоматично броене на референциите
 
-Model the lifetime of objects and their relationships.
+Моделирайте продължителността на живота на обектите и техните взаимоотношения.
 
-Swift uses *Automatic Reference Counting* (ARC)
-to track and manage your app's memory usage.
-In most cases, this means that memory management “just works” in Swift,
-and you don't need to think about memory management yourself.
-ARC automatically frees up the memory used by class instances
-when those instances are no longer needed.
+Swift следи и управлява употребата на паметта във Вашето приложение с помощта на
+*Автоматично броене на референциите* (Automatic Reference Counting - ARC).
+В повечето случаи това означава, че в Swift управлението на паметта *просто се случва*
+и не се налага сами да мислите него.
+ARC автоматично освобождава паметта, използвана от екземпляри на класове,
+когато тези екземпляри повече не са необходими.
 
-However, in a few cases ARC requires more information
-about the relationships between parts of your code
-in order to manage memory for you.
-This chapter describes those situations
-and shows how you enable ARC to manage all of your app's memory.
-Using ARC in Swift is very similar to the approach described in
+В няколко случая обаче ARC изисква повече информация
+относно зависимостите между частите от Вашия код,
+за да може да управлява паметта вместо Вас.
+В настоящата глава тези ситуации са обяснени, както и е показано
+как да дадете на ARC да управлява цялата памет на Вашето приложение.
+Използването на ARC в Swift е много подобно на подхода, описан в
 [Transitioning to ARC Release Notes](https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html)
-for using ARC with Objective-C.
+за използнане на ARC с Objective-C.
 
-Reference counting applies only to instances of classes.
-Structures and enumerations are value types, not reference types,
-and aren't stored and passed by reference.
+Броенето на референциите е приложимо само за екземпляри на класове.
+Структурите и изброяванията са стойностни, а не референтни, типове,
+които не се съхраняват и предават по референция.
 
-## How ARC Works
+## Как работи ARC
 
-Every time you create a new instance of a class,
-ARC allocates a chunk of memory to store information about that instance.
-This memory holds information about the type of the instance,
-together with the values of any stored properties associated with that instance.
+Всеки път, когато създадете нов екземпляр на някой клас,
+ARC заделя място в паметта, където да съхрани информация за този екземпляр.
+Тази памет съдържа информация за типа на екземпляра, както и стойностите
+на всички съхранени свойства, асоциирани с този екземпляр.
 
-Additionally, when an instance is no longer needed,
-ARC frees up the memory used by that instance
-so that the memory can be used for other purposes instead.
-This ensures that class instances don't take up space in memory
-when they're no longer needed.
+В допълнение, когато даден екземпляр повече не е необходим,
+ARC освобождава паммета, заета от него, така че паметта
+да може да се използва за други цели.
+По този начин екземплярите на класовете не заемат място в паметта,
+когато повече не са необходими.
 
-However, if ARC were to deallocate an instance that was still in use,
-it would no longer be possible to access that instance's properties,
-or call that instance's methods.
-Indeed, if you tried to access the instance, your app would most likely crash.
+Ако обаче ARC освобождаваше паметта за екземпляр, която все още се използва,
+нямаше повече да е възможно да се получи достъп до свойствата на този екземпляр
+или да се извикват неговите методи.
+Наистина, при опит за достъп до екземпляра Вашето приложения вероятно би забило.
 
-To make sure that instances don't disappear while they're still needed,
-ARC tracks how many properties, constants, and variables
-are currently referring to each class instance.
-ARC will not deallocate an instance
-as long as at least one active reference to that instance still exists.
+За да е сигурно, че екземплярите няма да изчезват, докато все още са необходими,
+ARC следи колко свойства, константи и променливи към момента реферират всеки екземпляр на клас.
+ARC не освобождава паметта за екземпляра, докато все още съществува поне една активна референция към него.
 
-To make this possible,
-whenever you assign a class instance to a property, constant, or variable,
-that property, constant, or variable makes a *strong reference* to the instance.
-The reference is called a "strong" reference because
-it keeps a firm hold on that instance,
-and doesn't allow it to be deallocated for as long as that strong reference remains.
+За да бъде това възможно, винаги, когато присвоите екземпляр на клас на свойство, константа или променлива,
+това свойство, константа или променлива поддържат *силна референция* към екземпляра.
+Референцията се нарича "силна", защото твърдо държи този екземпляр и не позволява той да бъде освободен,
+докато силната референция остава.
 
-## ARC in Action
+## ARC в действие
 
-Here's an example of how Automatic Reference Counting works.
-This example starts with a simple class called `Person`,
-which defines a stored constant property called `name`:
+Ето пример за това как работи автоматичното броене на референциите.
+Започваме с прост клас с име `Person`,
+който дефинира съхранено константно свойство, наречено `name`:
 
 ```swift
 class Person {
     let name: String
     init(name: String) {
         self.name = name
-        print("\(name) is being initialized")
+        print("Инициализира се \(name)")
     }
     deinit {
-        print("\(name) is being deinitialized")
+        print("Деинициализира се \(name)")
     }
 }
 ```
@@ -89,17 +85,17 @@ class Person {
   ```
 -->
 
-The `Person` class has an initializer that sets the instance's `name` property
-and prints a message to indicate that initialization is underway.
-The `Person` class also has a deinitializer
-that prints a message when an instance of the class is deallocated.
+Класът `Person` има инициализатор, който задава свойството `name` на екземпляра
+и извежда съобщение, посочващо, че в този момент се извършва инициализация.
+Също така класът `Person` разполага с деинициализатор,
+който извежда съобщение при освобождаване на паметта за екземпляра на класа.
 
-The next code snippet defines three variables of type `Person?`,
-which are used to set up multiple references to a new `Person` instance
-in subsequent code snippets.
-Because these variables are of an optional type (`Person?`, not `Person`),
-they're automatically initialized with a value of `nil`,
-and don't currently reference a `Person` instance.
+Следващият примерен фрагмент код дефинира три променливи от тип `Person?`,
+които се използват за установяването на множество референции към нов екземпляр на `Person`
+в последващи примерни фрагменти код.
+Тъй като тези променливи са от незадължителен тип(`Person?`, а не `Person`),
+те автоматично се инициализират със стойност `nil`
+и на този етап не реферират екземпляр на `Person`.
 
 ```swift
 var reference1: Person?
@@ -117,12 +113,12 @@ var reference3: Person?
   ```
 -->
 
-You can now create a new `Person` instance
-and assign it to one of these three variables:
+Сега вече можете да създадете нов екземпляр на `Person`
+и да я присвоите на една от тези три променливи:
 
 ```swift
 reference1 = Person(name: "John Appleseed")
-// Prints "John Appleseed is being initialized"
+// Извежда "Инициализира се John Appleseed"
 ```
 
 <!--
@@ -134,17 +130,17 @@ reference1 = Person(name: "John Appleseed")
   ```
 -->
 
-Note that the message `"John Appleseed is being initialized"` is printed
-at the point that you call the `Person` class's initializer.
-This confirms that initialization has taken place.
+Забележете, че съобщението `"Инициализира се John Appleseed"` се извежда
+в момента, в който извикате инициализатора на класа `Person`.
+Това потвърждава, че инициализацията се е извършила.
 
-Because the new `Person` instance has been assigned to the `reference1` variable,
-there's now a strong reference from `reference1` to the new `Person` instance.
-Because there's at least one strong reference,
-ARC makes sure that this `Person` is kept in memory and isn't deallocated.
+Тъй като новият екземпляр на `Person` е присвоен на променливата `reference1`,
+сега вече има силна референция от `reference1` към новия екземпляр на `Person`.
+Поради обстоятелството, че има поне една силна референция, ARC прави така, че
+този `Person` със сигурност се поддържа в паметта, без да се освобождава.
 
-If you assign the same `Person` instance to two more variables,
-two more strong references to that instance are established:
+Ако присвоите същия екземпляр на `Person` на още две променливи,
+ще бъдат установени още две силни референции към този екземпляр:
 
 ```swift
 reference2 = reference1
@@ -160,12 +156,12 @@ reference3 = reference1
   ```
 -->
 
-There are now *three* strong references to this single `Person` instance.
+Сега вече има *три* силни референции към този единствен екземпляр на `Person`.
 
-If you break two of these strong references (including the original reference)
-by assigning `nil` to two of the variables,
-a single strong reference remains,
-and the `Person` instance isn't deallocated:
+Ако прекъснете две от тези силни референции (включително оригиналната референция),
+като присвоите `nil` на две от променливите,
+остава единствена силна референция
+и екземплярът на `Person` не се освобождава:
 
 ```swift
 reference1 = nil
@@ -181,13 +177,13 @@ reference2 = nil
   ```
 -->
 
-ARC doesn't deallocate the `Person` instance until
-the third and final strong reference is broken,
-at which point it's clear that you are no longer using the `Person` instance:
+ARC не освобождава екземпляра на `Person`,
+докато третата и последна силна референция не бъде прекъсната,
+в който момент е ясно, че вече не го използвате:
 
 ```swift
 reference3 = nil
-// Prints "John Appleseed is being deinitialized"
+// Извежда "Деинициализира се John Appleseed"
 ```
 
 <!--
@@ -199,43 +195,43 @@ reference3 = nil
   ```
 -->
 
-## Strong Reference Cycles Between Class Instances
+## Цикли от силни референции между екземпляри на класове
 
-In the examples above,
-ARC is able to track the number of references to the new `Person` instance you create
-and to deallocate that `Person` instance when it's no longer needed.
+В примерите, представени по-горе, ARC е в състояние да следи броя на референциите
+към новия екземпляр на `Person`, които създавате, и да освободи този екземпляр,
+когато повече не е необходим.
 
-However, it's possible to write code in which an instance of a class
-*never* gets to a point where it has zero strong references.
-This can happen if two class instances hold a strong reference to each other,
-such that each instance keeps the other alive.
-This is known as a *strong reference cycle*.
+Възможно е обаче да бъде написан код, в който екземпляр на даден клас
+*никога* не стига до състояние, при което към него няма никакви силни референции.
+Това може да се случи, ако два екземпляра на клас държат силна референция един към друг,
+така че всеки екземпляр държи другия жив.
+Това е известно като *Цикъл от силни референции*.
 
-You resolve strong reference cycles
-by defining some of the relationships between classes
-as weak or unowned references instead of as strong references.
-This process is described in
+За да прекъснете цикъла от силни референции, трябва да дефинирате някои от
+взаимозависимостите между класовете като слаби или непритежавани (unowned) референции
+вместо като силни.
+Този процес е описан в
 <doc:AutomaticReferenceCounting#Resolving-Strong-Reference-Cycles-Between-Class-Instances>.
-However, before you learn how to resolve a strong reference cycle,
-it's useful to understand how such a cycle is caused.
+Но преди да научите как да разрешавате такива цикли, е полезно да разбирате
+какво ги причинява.
 
-Here's an example of how a strong reference cycle can be created by accident.
-This example defines two classes called `Person` and `Apartment`,
-which model a block of apartments and its residents:
+Ето един пример за това как неволно може да бъде създаден цикъл от силни референции.
+Тук са дефинирани два класа, `Person` и `Apartment`,
+които моделират блок от апартаменти и техните жители:
 
 ```swift
 class Person {
     let name: String
     init(name: String) { self.name = name }
     var apartment: Apartment?
-    deinit { print("\(name) is being deinitialized") }
+    deinit { print("Деинициализира се \(name)") }
 }
 
 class Apartment {
     let unit: String
     init(unit: String) { self.unit = unit }
     var tenant: Person?
-    deinit { print("Apartment \(unit) is being deinitialized") }
+    deinit { print("Деинициализира се апартамент \(unit)") }
 }
 ```
 
@@ -259,23 +255,22 @@ class Apartment {
   ```
 -->
 
-Every `Person` instance has a `name` property of type `String`
-and an optional `apartment` property that's initially `nil`.
-The `apartment` property is optional, because a person may not always have an apartment.
+Всеки екземпляр на `Person` има свойство `name` от тип `String`
+и незадължително свойство `apartment`, което първоначално е `nil`.
+Свойството `apartment` е незадължително, защото един човек не винаги може 
+да има апартамент.
 
-Similarly, every `Apartment` instance has a `unit` property of type `String`
-and has an optional `tenant` property that's initially `nil`.
-The tenant property is optional because an apartment may not always have a tenant.
+В същия ред на мисли, всеки екземпляр на `Apartment` има свойство `unit` от тип `String`,
+както и незадължително свойство `tenant`, което първоначално е `nil`.
+Свойството `tenant` е незадължително, защото един апартамент не винаги може да има наемател.
 
-Both of these classes also define a deinitializer,
-which prints the fact that an instance of that class is being deinitialized.
-This enables you to see whether
-instances of `Person` and `Apartment` are being deallocated as expected.
+Също така и двата класа дефиринат деинициализатор,
+който визуализира факта, че екземпляр на този клас се деинициализира.
+Това дава възможност да се види дали екземплярите на `Person` и `Apartment` се освобождават така, както се очаква.
 
-This next code snippet defines two variables of optional type
-called `john` and `unit4A`,
-which will be set to a specific `Apartment` and `Person` instance below.
-Both of these variables have an initial value of `nil`, by virtue of being optional:
+Следващият фрагмент код дефинира две променливи от незадължителен тип с име `john` и `unit4A`,
+които по-надолу ще бъдат установени с конкретни екземпляри на `Person` и `Apartment`.
+И двете променливи имат първоначална стойност `nil`, по силата на това, че са декларирани като незадължителни:
 
 ```swift
 var john: Person?

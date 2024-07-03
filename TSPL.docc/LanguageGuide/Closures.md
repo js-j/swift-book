@@ -700,26 +700,24 @@ func incrementer() -> Int {
   ```
 -->
 
-??????????s
+Функцията `incrementer()` няма параметри,
+и въпреки това тя реферира `runningTotal` и `amount` вътре в своето тяло.
+Това става, като функцията прихваща *референции* към `runningTotal` и `amount`
+от обграждащата функция и ги използва в собственото си тяло.
+Прихващането по референция гарантира, че `runningTotal` и `amount` няма да изчезнат,
+когато извикването на `makeIncrementer` приключи,
+както и че `runningTotal` ще бъде налична
+при следващото извикване на функцията `incrementer`.
 
-The `incrementer()` function doesn't have any parameters,
-and yet it refers to `runningTotal` and `amount` from within its function body.
-It does this by capturing a *reference* to `runningTotal` and `amount`
-from the surrounding function and using them within its own function body.
-Capturing by reference ensures that `runningTotal` and `amount` don't disappear
-when the call to `makeIncrementer` ends,
-and also ensures that `runningTotal` is available
-the next time the `incrementer` function is called.
-
-> Note: As an optimization,
-> Swift may instead capture and store a *copy* of a value
-> if that value isn't mutated by a closure,
-> and if the value isn't mutated after the closure is created.
+> Забележка: Като вид опиимизация
+> Swift би могъл вместо това да прихване и съхрани *копие* на стойността,
+> ако тази стойност не бива изменена от някое затваряне
+> и ако тя не се изменя след създаването на затварянето.
 >
-> Swift also handles all memory management involved in disposing of
-> variables when they're no longer needed.
+> Освен това Swift се грижи изцяло за управлението на паметта, което се извършва при освобождаване на
+> паметта за променливи, когато те повече не са необходими.
 
-Here's an example of `makeIncrementer` in action:
+Ето един пример за `makeIncrementer` в действие:
 
 ```swift
 let incrementByTen = makeIncrementer(forIncrement: 10)
@@ -733,18 +731,18 @@ let incrementByTen = makeIncrementer(forIncrement: 10)
   ```
 -->
 
-This example sets a constant called `incrementByTen`
-to refer to an incrementer function that adds `10` to
-its `runningTotal` variable each time it's called.
-Calling the function multiple times shows this behavior in action:
+В този пример се задава константа, наречена `incrementByTen`,
+която да реферира инкрементираща функция, добавяща `10` към
+своята `runningTotal` при всяко извикване.
+Извикването на функцията множество пъти показва това нейно поведение в действие:
 
 ```swift
 incrementByTen()
-// returns a value of 10
+// връща стойност 10
 incrementByTen()
-// returns a value of 20
+// връща стойност 20
 incrementByTen()
-// returns a value of 30
+// връща стойност 30
 ```
 
 <!--
@@ -771,13 +769,13 @@ incrementByTen()
   Tracking bug is <rdar://problem/35301593>
 -->
 
-If you create a second incrementer,
-it will have its own stored reference to a new, separate `runningTotal` variable:
+Ако създадете втори инкрементор,
+той ще има своя собствена съхранена референция към нова, отделна променлива `runningTotal`:
 
 ```swift
 let incrementBySeven = makeIncrementer(forIncrement: 7)
 incrementBySeven()
-// returns a value of 7
+// връща стойност 7
 ```
 
 <!--
@@ -792,13 +790,13 @@ incrementBySeven()
   ```
 -->
 
-Calling the original incrementer (`incrementByTen`) again
-continues to increment its own `runningTotal` variable,
-and doesn't affect the variable captured by `incrementBySeven`:
+При извикване на оригиналната инкрементираща функция (`incrementByTen`) отново
+продължава да се инкрементира нейната собствена променлива `runningTotal`,
+без това да се отразява върху променливата, прихваната от `incrementBySeven`:
 
 ```swift
 incrementByTen()
-// returns a value of 40
+// връща стойност 40
 ```
 
 <!--
@@ -812,11 +810,13 @@ incrementByTen()
   ```
 -->
 
-> Note: If you assign a closure to a property of a class instance,
-> and the closure captures that instance by referring to the instance or its members,
-> you will create a strong reference cycle between the closure and the instance.
-> Swift uses *capture lists* to break these strong reference cycles.
-> For more information, see <doc:AutomaticReferenceCounting#Strong-Reference-Cycles-for-Closures>.
+> Забележка: Ако присвоите затваряне на свойство на инстанция на някой клас,
+> и ако затварянето прихваща тази инстанция, като реферира към нея или нейните членове,
+> ще създадете цикъл от силни референции между затварянето и инстанцията.
+> Swift използва *списъци на прихващанията*, за да прекъсне тези цикли от силни референции.
+> За повече информация вижте <doc:AutomaticReferenceCounting#Strong-Reference-Cycles-for-Closures>.
+
+????
 
 ## Closures Are Reference Types
 
