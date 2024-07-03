@@ -1,25 +1,23 @@
-# Collection Types
+# Типове за колекции	
 
-Organize data using arrays, sets, and dictionaries.
+Организирайте данните посредством масиви, множества и речници.
 
-Swift provides three primary *collection types*,
-known as arrays, sets, and dictionaries,
-for storing collections of values.
-Arrays are ordered collections of values.
-Sets are unordered collections of unique values.
-Dictionaries are unordered collections of key-value associations.
+Swift осигурява три основни типа за съхранение на колекции от стойности -
+масиви, множества и речници.
+Масивите представляват подредени колекции от стойности.
+Множествата са неподредени колекции от уникални стойности.
+Речниците представляват неподредени колекции от асоциации ключ-стойност.
 
 ![](CollectionTypes_intro)
 
-Arrays, sets, and dictionaries in Swift are always clear about
-the types of values and keys that they can store.
-This means that you can't insert a value of the wrong type
-into a collection by mistake.
-It also means you can be confident about the type of values
-you will retrieve from a collection.
+При масивите, множествата и речниците в Swift винаги има яснота относно
+типовете на стойностите и ключовете, които те могат да съхраняват.
+Това означава, че в една колекция не може по погрешка да се вмъкне
+стойност от погрешен тип. Също така можете да сте уверени за типовете стойности,
+които ще извличате от колекциите.
 
-> Note: Swift's array, set, and dictionary types are implemented as *generic collections*.
-> For more about generic types and collections, see <doc:Generics>.
+> Забележка: Типовете масив, множество и речник на Swift са реализирани като *обобщение колекции*.
+> Повече информация относно обобщените типове и колекции ще откриете в <doc:Generics>.
 
 <!--
   TODO: should I mention the Collection protocol, to which both of these conform?
@@ -33,50 +31,46 @@ you will retrieve from a collection.
   TODO: discuss collection equality
 -->
 
-## Mutability of Collections
+## Изменяемост на колекциите
 
-If you create an array, a set, or a dictionary, and assign it to a variable,
-the collection that's created will be *mutable*.
-This means that you can change (or *mutate*) the collection after it's created
-by adding, removing, or changing items in the collection.
-If you assign an array, a set, or a dictionary to a constant,
-that collection is *immutable*,
-and its size and contents can't be changed.
+Ако създадете масив, множество или речник и го присвоите на променлива, създадената колекция
+ще бъде *изменяема*. Това означава, че можете да изменяте (англ. *mutate*) колекцията, след като
+тя е създадена, чрез добавяне, премахване или променяне на елементите в колекцията.
+Ако присвоите масив, множество или речник на константа, тази колекция е *неизменяема* (*immutable*)
+и нейният размер и съдържание не могат да бъдат променяни.
 
-> Note: It's good practice to create immutable collections
-> in all cases where the collection doesn't need to change.
-> Doing so makes it easier for you to reason about your code
-> and enables the Swift compiler to optimize the performance of
-> the collections you create.
+> Забележка: Добра практика е да създавате неизменяеми колекции
+> във всички случаи, при които не е необходима промяна на колекцията.
+> Така по-лесно ще можете да вадите заключения относно вашия код
+> и дава възможност на компилатора на Swift да оптимизира бързодействието
+> при достъп до колекциите, които създавате.
 
-## Arrays
+## Масиви
 
-An *array* stores values of the same type in an ordered list.
-The same value can appear in an array multiple times at different positions.
+*Масивът* съхранява стойности от един и същи тип в подреден списък.
+Една и съща стойност може да присъства в масива повече от веднъж на различни позиции.
 
-> Note: Swift's `Array` type is bridged to Foundation's `NSArray` class.
+> Забележка: Типът `Array` на Swift е присъединен към класа `NSArray` от Foundation.
 >
-> For more information about using `Array` with Foundation and Cocoa,
-> see [Bridging Between Array and NSArray](https://developer.apple.com/documentation/swift/array#2846730).
+> Повече информация относно употребата на `Array` с Foundation и Cocoa
+> ще откриете в [Bridging Between Array and NSArray](https://developer.apple.com/documentation/swift/array#2846730).
 
-### Array Type Shorthand Syntax
+### Съкратен синтаксис на типа за масив
 
-The type of a Swift array is written in full as `Array<Element>`,
-where `Element` is the type of values the array is allowed to store.
-You can also write the type of an array in shorthand form as `[Element]`.
-Although the two forms are functionally identical,
-the shorthand form is preferred
-and is used throughout this guide when referring to the type of an array.
+Типът на един масив в Swift се изписва в пълна форма като `Array<Element>`,
+където `Element` е типът на стойностите, за които е позволено да бъдат съхранявани в масива.
+Можете да изпишете типа на масива в съкратена форма и като `[Element]`.
+Макар и двете форми да са функционално идентични,
+съкратената се предпочита и в това ръководство се използва винаги, когато се указва типът на даден масив.
 
-### Creating an Empty Array
+### Създаване на празен масив
 
-You can create an empty array of a certain type
-using initializer syntax:
+Създаването на празен масив от определен тип става с помощта на синтаксис на инициализатор:
 
 ```swift
 var someInts: [Int] = []
-print("someInts is of type [Int] with \(someInts.count) items.")
-// Prints "someInts is of type [Int] with 0 items."
+print("someInts е от тип [Int] с \(someInts.count) елемента.")
+// Извежда "someInts е от тип [Int] с 0 елемента."
 ```
 
 <!--
@@ -89,20 +83,20 @@ print("someInts is of type [Int] with \(someInts.count) items.")
   ```
 -->
 
-Note that the type of the `someInts` variable is inferred to be `[Int]`
-from the type of the initializer.
+Обърнете внимание, че типът на променливата `someInts` се разпознава от компилатора като `[Int]`
+от типа на инициализатора.
 
-Alternatively, if the context already provides type information,
-such as a function argument or an already typed variable or constant,
-you can create an empty array with an empty array literal,
-which is written as `[]`
-(an empty pair of square brackets):
+Като алтернатива, ако контекстът вече предоставя информация за типа,
+например като аргумент на функция, или пък променлива или константа с вече определен тип,
+можете да създадете празен масив посредством литерал за празен масив,
+който се изписва като `[]`
+(празна двойка квадратни скоби):
 
 ```swift
 someInts.append(3)
-// someInts now contains 1 value of type Int
+// Тук someInts съдържа една стойност от тип Int
 someInts = []
-// someInts is now an empty array, but is still of type [Int]
+// Тук someInts е празен масив, но все още е от тип [Int]
 ```
 
 <!--
@@ -117,18 +111,17 @@ someInts = []
   ```
 -->
 
-### Creating an Array with a Default Value
+### Създаване на масив с подразбираща се стойност
 
-Swift's `Array` type also provides
-an initializer for creating an array of a certain size
-with all of its values set to the same default value.
-You pass this initializer
-a default value of the appropriate type (called `repeating`):
-and the number of times that value is repeated in the new array (called `count`):
+Типът `Array` на Swift също така осигурява
+инициализатор за създаване на масив с определен размер,
+в който всички стойности са установени на една и съща подразбираща се стойност.
+На инициализатора се предава подразбираща се стойност от съответния тип (наречена `repeating`)
+и броя пъти тази стойност да бъде повторена в новия масив (наречен `count`):
 
 ```swift
 var threeDoubles = Array(repeating: 0.0, count: 3)
-// threeDoubles is of type [Double], and equals [0.0, 0.0, 0.0]
+// threeDoubles е от тип [Double] и е равно на [0.0, 0.0, 0.0]
 ```
 
 <!--
@@ -141,7 +134,7 @@ var threeDoubles = Array(repeating: 0.0, count: 3)
   ```
 -->
 
-### Creating an Array by Adding Two Arrays Together
+### Създаване на масив чрез събиране на два други масива
 
 You can create a new array by adding together two existing arrays with compatible types
 with the addition operator (`+`).
@@ -182,22 +175,22 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
   Likewise I'm holding off writing about it until NewArray lands.
 -->
 
-### Creating an Array with an Array Literal
+### Създаване на масив чрез литерал
 
-You can also initialize an array with an *array literal*,
-which is a shorthand way to write one or more values as an array collection.
-An array literal is written as a list of values, separated by commas,
-surrounded by a pair of square brackets:
+Масивите могат да бъдат инициализирани и с *литерали*, които представляват
+съкратен начин да пишете една или повече стойности като колекция масив.
+Литерал за масив се изписва като списък от стойности, разделени със запетаи,
+оградени от двойка квадратни скоби:
 
 ```swift
-[<#value 1#>, <#value 2#>, <#value 3#>]
+[стойност 1, стойност 2, стойност 3]
 ```
 
-The example below creates an array called `shoppingList` to store `String` values:
+В примера по-долу се създава масив, наречен `shoppingList`, който ще съхранява стойности от тип `String`:
 
 ```swift
 var shoppingList: [String] = ["Eggs", "Milk"]
-// shoppingList has been initialized with two initial items
+// shoppingList е инициализиран с две първоначални стойности
 ```
 
 <!--
@@ -209,22 +202,22 @@ var shoppingList: [String] = ["Eggs", "Milk"]
   ```
 -->
 
-The `shoppingList` variable is declared as
-“an array of string values”, written as `[String]`.
-Because this particular array has specified a value type of `String`,
-it's allowed to store `String` values only.
-Here, the `shoppingList` array is initialized with two `String` values
-(`"Eggs"` and `"Milk"`), written within an array literal.
+Променливата `shoppingList` е декларирана като
+“масив от низови стойности”, изписано като `[String]`.
+Тъй за този конкретен масив е зададен тип `String`, е
+позволено да се съхраняват само стойности от тип `String`.
+Тук масивът `shoppingList` се инициализира с две `String` стойности
+(`"Eggs"` и `"Milk"`), изписани в литерала.
 
-> Note: The `shoppingList` array is declared as a variable (with the `var` introducer)
-> and not a constant (with the `let` introducer)
-> because more items are added to the shopping list in the examples below.
+> Забележка: Масивът `shoppingList` е деклариран като променлива (чрез декларациятя `var`),
+> а не константа (посредством `let`), тъй като в примерите по-долу
+> се добавят повече елементи към списъка за пазаруване.
 
-In this case, the array literal contains two `String` values and nothing else.
-This matches the type of the `shoppingList` variable's declaration
-(an array that can only contain `String` values),
-and so the assignment of the array literal is permitted
-as a way to initialize `shoppingList` with two initial items.
+В този случай литералът за масив съдържа две стойности от тип `String` и нищо повече.
+Това съответства на типа на декларацията на променливата `shoppingList`
+(масив, който може да съдържа единствено `String` стойности),
+така че присвояването на литерал за масив е
+позволено като начин да се инициализира `shoppingList` с два първоначални елемента.
 
 Thanks to Swift's type inference,
 you don't have to write the type of the array
